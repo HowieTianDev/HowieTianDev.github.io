@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>HowieTian&#39;s Blog</title>
+  <subtitle>Learn and live</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2017-04-11T15:33:42.799Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>HowieTian</name>
+    <email>howietiandev@gmail.com</email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>手机万才项目总结</title>
+    <link href="http://yoursite.com/2017/04/11/%E6%89%8B%E6%9C%BA%E4%B8%87%E6%89%8D%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2017/04/11/手机万才项目总结/</id>
+    <published>2017-04-11T13:40:33.000Z</published>
+    <updated>2017-04-11T15:33:42.799Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>经过寒假的筹备，从开学（2017.2.19）正式编码，到校赛正式答辩（2017.4.5），大概 1 个半月的时间，同赵俊文一同开发了我的第一个完整的项目——「手机万才」。在完成这个项目的过程中，无论是技术上还是管理上，都遇到了不少问题，幸运的是，最终都克服了。虽然最终答辩的时候，发挥的不是很理想，但还是获得了三等奖（还是可以接受的）。现在做个小小的总结吧，为自己 1 个半月的忙碌做个交待，也为今后少走弯路。</p>
+<h3 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h3><h4 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h4><p>在之前写小 demo 的时候，没有觉得代码规范的重要性，当项目稍微大了点的时候，必须强迫自己做好代码规范，不仅方便自己编码，也方便别人合作。</p>
+<ul>
+<li><h5 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h5></li>
+</ul>
+<p><img src="/images/0411content.png" alt="content"></p>
+<p>​    可以粗略地按照功能分类</p>
+<ul>
+<li><h5 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h5><p><strong>类和接口：</strong> 类名必须使用<strong>驼峰</strong> 命名规则    eg : BookReadPlanAdd</p>
+<p><strong>方法命名：</strong> 方法名是一个动词，采用大小写混合的方式，第一个单词首字母小写，其后单词的首字母大写                      eg : public void getBookName();</p>
+<p><strong>变量命名：</strong> 临时变量一般取名 i，j，k，m，n，一般用于整型；c，d，e，一般用于字符型。</p>
+<p>​             变量命名也必须采用驼峰规则，但是首字母必须小写。eg : bookName </p>
+<p><strong>成员变量命名：</strong> 同变量命名，但不要在私有变量前添加「m」字样。</p>
+<p><strong>常量命名：</strong> 类常量的声明全部大写，单词间用下划线隔开。 eg ： static final int MIN_WIDTH = 4;</p>
+<p><strong>layout 命名：</strong> 全部单词小写，单词间以下划线分割，并且使用名词或名词词组 来命名</p>
+<p><strong>id命名：</strong> 全部单词小写，单词间以下划线分割，并且使用名词词组，并且要求能够通过 id 直接理解当前组件要实现的功能。 eg ； @+id/book_name_show</p>
+<p><strong>资源命名：</strong> layout 中所使用的所有资源（drawable，style 等）命名必须以全部单词小写，以下划线分割。</p>
+</li>
+<li><h5 id="规约"><a href="#规约" class="headerlink" title="规约"></a>规约</h5><p><strong>方法：</strong> 一个方法最好不要超过 15 行，如果方法太长，说明当前方法业务逻辑已经非常复杂，最好进行拆分，确保一个方法只做一件事。</p>
+<p><strong>参数和返回值：</strong> 一个方法的参数尽量不要超过 4 个。</p>
+<p><strong>神秘的数：</strong> 代码中不允许出现单独的数字、字符，如果必须出现，则必须将它们按照含义封装为静态常量。</p>
+<p><strong>访问控制：</strong> 如果没有足够理由，不要把实例或者类变量声明为公有。 </p>
+</li>
+</ul>
+<h4 id="编码技巧"><a href="#编码技巧" class="headerlink" title="编码技巧"></a>编码技巧</h4><ul>
+<li><h5 id="定制基类"><a href="#定制基类" class="headerlink" title="定制基类"></a>定制基类</h5><p>可以自己定制各种基类 BaseActivity 、BaseFragment、BaseAdapter，可以将常用的方法等封装到里面，如：界面跳转、Toast、抽象初始化方法 <code>init()</code>  等。</p>
+<p>如果使用 ButterKnife ，则必须在基类中定义抽象的<code>setMyContentView()</code>  ，让 ButtertKnife 与视图绑定，否则在子类中会出现控件绑定不成功的情况，具体代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initLayout</span><span class="params">()</span> </span>&#123;</div><div class="line">     setMyContentView();</div><div class="line">     ButterKnife.bind(<span class="keyword">this</span>);</div><div class="line"> &#125;</div><div class="line"></div><div class="line"> <span class="comment">/**</span></div><div class="line">  * 由子类进行重写</div><div class="line">  * 在该方法中，子类指定布局文件</div><div class="line">  */</div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">setMyContentView</span><span class="params">()</span></span>;</div></pre></td></tr></table></figure>
+<p>子类中实现该抽象方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line"> public void setMyContentView() &#123;</div><div class="line">   setContentView(R.layout.activity_login);</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p>写了这个后，<code>onCreate()</code> 方法便不用再写了，具体的初始化操作，可以放在 <code>init()</code> 方法中，理清代码逻辑。 </p>
+</li>
+<li><h5 id="资源调用"><a href="#资源调用" class="headerlink" title="资源调用"></a>资源调用</h5><p><strong>图片：</strong> 通常的图片放入<code>drawable</code> 文件夹中，在不做屏幕适配的情况下，建议放入<code>xhdpi</code>或<code>xxhdpi</code>文件夹中，<code>mipmap</code> 文件夹中通常放图标。</p>
+<p><strong>颜色资源：</strong> <code>colorPrimary</code> 、<code>colorPrimaryDark</code> 、<code>colorAccent</code> 需要指定，很多地方可以直接配置。</p>
+<p><strong>字符串与尺寸资源：</strong> <code>title</code> 、<code>subtitle</code> 、<code>body</code> 、<code>caption</code> 、<code>largebody</code> 等都可以指定。</p>
+</li>
+<li><p>优秀的第三方库</p>
+<p><strong>筛选菜单库：</strong> <code>compile &#39;com.github.dongjunkun:DropDownMenu:1.0.3&#39;</code>  <strong>坑</strong> 需要在 <code>values</code> 文件夹下新建<code>interger.xml</code> </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">integer</span> <span class="attr">name</span>=<span class="string">"drop_down_menu_animation_duration"</span>&gt;</span>200<span class="tag">&lt;/<span class="name">integer</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>黄油刀注解：</strong> <code>compile files(&#39;libs/butterknife-7.0.1.jar&#39;)</code> 告别<code>findViewById()</code></p>
+<p><strong>图片加载库：</strong> <code>compile files(&#39;libs/universal-image-loader-1.9.2_sources.jar&#39;)</code> </p>
+<p><strong>广告栏：</strong> <code>compile &#39;cn.bingoogolapple:bga-banner:2.1.7@aar&#39;</code></p>
+<p><strong>解析json：</strong> <code>compile files(&#39;libs/gson-2.6.2.jar&#39;)</code> </p>
+<p><strong>底部导航栏：</strong> <code>compile &#39;com.ashokvarma.android:bottom-navigation-bar:1.2.0&#39;</code> </p>
+<p><strong>圆形头像：</strong> <code>compile &#39;de.hdodenhof:circleimageview:2.1.0&#39;</code> </p>
+<p><strong>可以弹出菜单的FAB：</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">/***添加rfab需要添加三个依赖***/</div><div class="line">   compile &apos;com.github.wangjiegulu:AndroidBucket:1.0.4&apos;</div><div class="line">   compile &apos;com.github.wangjiegulu:AndroidInject:1.0.6&apos;</div><div class="line">   compile &apos;com.github.wangjiegulu:RapidFloatingActionButton:1.0.3&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><h5 id="强劲的后端支持-Bmob"><a href="#强劲的后端支持-Bmob" class="headerlink" title="强劲的后端支持 Bmob"></a>强劲的后端支持 Bmob</h5><p><a href="http://www.bmob.cn/" target="_blank" rel="external">Bmob 官网</a> 查询官方文档，可以方便的实现很多功能，对于移动开发提供了很多便利。</p>
+</li>
+<li><h5 id="最美的-Material-Design-设计"><a href="#最美的-Material-Design-设计" class="headerlink" title="最美的 Material Design 设计"></a>最美的 Material Design 设计</h5><p>作为 Android 开发者，当然是要推崇 MD 设计了，大量运用 MD 组件，采用 MD 图标，使用 MD 推荐的颜色。<a href="https://material.io/" target="_blank" rel="external">Material Design 官网</a> </p>
+</li>
+</ul>
+<h3 id="管理"><a href="#管理" class="headerlink" title="管理"></a>管理</h3><p>技术方面很多都可以通过搜索引擎来解决，但是管理这东西，真的不容易。想起我们的视频在答辩前10分钟才完成，文档写的很简陋，ppt不符合服务外包比赛的方向，这都是导致我们成绩不理想的原因。以后再参加类似比赛，如何能在15分钟左右时间内尽可能的展现出「创新点」、「比赛要求」、「技术运用」等干货才是最重要的，而不是说「产品历程」等无关痛痒的东西。</p>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>总之，经过这次项目以及担任 leader 的经历，自己的技术得到了提高，管理方面也有了自己的一点见解。继续前行吧！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;经过寒假的筹备，从开学（2017.2.19）正式编码，到校赛正式答辩（2017.4.5），大概 1 个半月的时间，同赵俊文一同开发了我的第一
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+      <category term="项目总结" scheme="http://yoursite.com/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Markdown 语法学习</title>
+    <link href="http://yoursite.com/2017/04/09/Markdown-%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://yoursite.com/2017/04/09/Markdown-语法学习/</id>
+    <published>2017-04-09T02:55:12.000Z</published>
+    <updated>2017-04-09T14:57:53.534Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>在 Markdown 中，你只需要在文本前面加上<code>#</code> ，通过设置<code>#</code> 的个数，来确定标题的级别 </p>
+<p><strong>注意：</strong> <code>#</code> 与标题之间有一个空格</p>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><ul>
+<li>文本1</li>
+<li>文本2</li>
+<li>文本3 </li>
+</ul>
+<p>只需要在文本前面加上<code>-</code> 、<code>+</code> 、<code>*</code> </p>
+<p><strong>注意：</strong> <code>-</code> 与文本之间有一个空格</p>
+<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><ol>
+<li>文本1</li>
+<li>文本2</li>
+<li>文本3</li>
+</ol>
+<p>只需要在文本前面加上<code>1.</code> </p>
+<p><strong>注意：</strong> <code>1.</code> 与文本之间有一个空格</p>
+<h3 id="插入链接"><a href="#插入链接" class="headerlink" title="插入链接"></a>插入链接</h3><p><a href="www.jianshu.com">简书</a></p>
+<p>格式为：<code>[文本](链接)</code></p>
+<h3 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h3><p>格式为：<code>![文本](图片链接)</code> </p>
+<h3 id="插入下划线"><a href="#插入下划线" class="headerlink" title="插入下划线"></a>插入下划线</h3><p>格式为：<code>---</code> </p>
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><blockquote>
+<p>做自己喜欢的事</p>
+</blockquote>
+<p>在文字前面加<code>&gt;</code> </p>
+<h3 id="粗体和斜体"><a href="#粗体和斜体" class="headerlink" title="粗体和斜体"></a>粗体和斜体</h3><p><em>斜体</em> ：在文本前后各加一个<code>*</code> ，如：<code>*文本*</code> </p>
+<p><strong>粗体</strong> ：在文本前后各加两个<code>*</code> ，如：<code>**文本**</code> </p>
+<h3 id="代码引用"><a href="#代码引用" class="headerlink" title="代码引用"></a>代码引用</h3><ul>
+<li>单行代码引用：<code>hello world</code>  使用 ` 将语句包起来</li>
+<li>多行代码引用：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</div><div class="line">  System.out.println(<span class="string">"hello world"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用 ``` 将语句包起来</p>
+<h3 id="博客中插入图片"><a href="#博客中插入图片" class="headerlink" title="博客中插入图片"></a>博客中插入图片</h3><p><a href="http://www.qiuchengjia.cn/2016/06/07/%E5%8D%9A%E5%AE%A2/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87%EF%BC%8C%E9%9F%B3%E4%B9%90%EF%BC%8C%E8%A7%86%E9%A2%91/" target="_blank" rel="external">插入图片</a></p>
+<p>暂时先不采用「图床」的方式，直接加载本地图片解决吧</p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>这里只是暂时列出了几种最常用的 Markdown 语法，有一些高级语法，暂时还用不到，就先不写，等用到时再加以补充。以后写博客使用 Markdown + stormzhang 的排版标准来写，坚持下去，提高自己的写作能力。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;标题&quot;&gt;&lt;a href=&quot;#标题&quot; class=&quot;headerlink&quot; title=&quot;标题&quot;&gt;&lt;/a&gt;标题&lt;/h3&gt;&lt;p&gt;在 Markdown 中，你只需要在文本前面加上&lt;code&gt;#&lt;/code&gt; ，通过设置&lt;code&gt;#&lt;/code&gt; 的个数，来确定标题的级
+    
+    </summary>
+    
+      <category term="搭建博客" scheme="http://yoursite.com/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="搭建博客" scheme="http://yoursite.com/tags/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
+    
+      <category term="Markdown" scheme="http://yoursite.com/tags/Markdown/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GitHub + Hexo 搭建个人博客</title>
+    <link href="http://yoursite.com/2017/04/08/Github-Hexo-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://yoursite.com/2017/04/08/Github-Hexo-搭建个人博客/</id>
+    <published>2017-04-08T15:52:54.000Z</published>
+    <updated>2017-04-10T04:38:57.691Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>寒假的时候就想搭个博客玩了，一直没有具体实施。现在终于花费了 1 天的时间撘成了，心情还是有点小激动。以后就会将一些技术方面的文章、学习心得放到这里，这里就会成为我的「技术小天地」，希望自己技术能力得到提高，写作能力也能有长足的进步吧。</p>
+<h3 id="步骤概览"><a href="#步骤概览" class="headerlink" title="步骤概览"></a>步骤概览</h3><ul>
+<li>环境配置</li>
+<li>Hexo 的安装、部署</li>
+<li>NexT 主题的配置</li>
+<li>绑定域名（可选）</li>
+</ul>
+<h4 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h4><ul>
+<li><p>Git 的安装与配置 </p>
+<p><a href="https://git-scm.com/download/" target="_blank" rel="external">Git 的下载地址</a> </p>
+</li>
+<li><p>Node.js 的安装</p>
+<p><a href="https://nodejs.org/en/download/" target="_blank" rel="external">Node.js 的下载地址</a> </p>
+</li>
+<li><p>注册 GitHub 账号</p>
+<p><a href="https://github.com/" target="_blank" rel="external">GitHub 的官网</a> </p>
+</li>
+<li><p>配置 SSH key</p>
+<p>Linux 与 Mac都是默认安装了 SSH ，而 Windows 系统安装了 Git Bash 应该也是带了 SSH 的。大家可以在终端（win 下在 Git Bash 里）输入 ssh ,如果出现以下提示证明你本机已经安装 SSH ，否则请自行安装</p>
+<p><img src="/images/code0.png" alt="code0">  </p>
+<p>紧接着输入 <code>ssh-keygen -t rsa</code> ，指定 rsa 算法生成算法密钥，接着连续三个回车键（不需    要输入密码），然后会生成两个文件 <strong>id_ras</strong> 和 <strong>id_ras.pub</strong> ，而 <strong>id_ras</strong> 是密钥，<strong>id_ras.pub</strong>  是公钥。这两个文件默认分别在如下目录下生成：</p>
+<p><strong>/c/Documents and Settings/username/.ssh</strong>   </p>
+<p>接着就是在 GitHub 上添加 SSH key ，相信大家会有办法的。</p>
+<p>SSH key 添加成功后，输入<code>ssh -T git@github.com</code> 进行测试，如果出现以下提示证明添加成功了。</p>
+<p><img src="/images/code1.png" alt="code1"></p>
+<p>成功之后，我们就可以向 GitHub 提交代码，也可以部署我们的博客到 GitHub Page 上了。</p>
+</li>
+<li><p>搭建 GitHub Page</p>
+<p>登录 GitHub 后，新建一个仓库。仓库名为 <strong>username.github.io</strong> username 为你自己的用户名，这是特殊的词法约定。</p>
+<p><strong>注意</strong> ：仓库中必须有文件才可以访问，你可以先添加一个Readme文件</p>
+</li>
+</ul>
+<h4 id="Hexo-的安装、部署"><a href="#Hexo-的安装、部署" class="headerlink" title="Hexo 的安装、部署"></a>Hexo 的安装、部署</h4><p>Hexo 是一个简单、快速、强大的静态博客生成工具，支持 Markdown 格式。</p>
+<p><a href="https://hexo.io/docs/index.html" target="_blank" rel="external">这里是官方介绍</a> </p>
+<p>在任意一个盘符，新建「hexo」文件夹，比如我在D盘新建，作为 博客的文件夹。</p>
+<ol>
+<li><p>打开 Git Bash ，运行 Hexo 安装命令 <code>npm install -g hexo</code></p>
+<p><em>ps:</em> 这里 npm(node package management) 在安装 Node.js 的时候已经默认安装</p>
+</li>
+<li><p>进入 hexo 目录下 <code>cd D:/hexo</code> </p>
+<p>运行以下命令，Hexo 随后将自动在目标文件夹中国建立网站所需要的所有文件。</p>
+<p><code>hexo init</code> </p>
+</li>
+<li><p>搭建一个本地博客</p>
+<p><code>hexo g</code> 生成博客</p>
+<p><code>hexo s</code> 启动本地服务预览</p>
+<p><code>hexo s -g</code> 两者也可以合并起来</p>
+<p>然后在浏览器中输入「localhost:4000」即可预览已生成的博客</p>
+</li>
+</ol>
+<h4 id="NexT-主题的安装、配置"><a href="#NexT-主题的安装、配置" class="headerlink" title="NexT 主题的安装、配置"></a>NexT 主题的安装、配置</h4><p>原有的主题是<code>landscape</code> ，但是不一定符合所有人的喜好，可以更换主题，让自己的博客更具个性化，这里我选用了简洁大方的 NexT 主题，来打造我的博客，当然也有其他好看的主题，大家可以自行安装、配置。</p>
+<p><a href="https://www.aswifter.com/2016/01/18/hexo-themes/" target="_blank" rel="external">一些 Hexo 博客主题推荐</a></p>
+<p>NexT 主题安装配置</p>
+<p><a href="http://theme-next.iissnan.com/theme-settings.html#tags-page" target="_blank" rel="external">NexT 主题官方配置说明</a></p>
+<p><strong>注意：</strong> 其实按着官方配置说明没什么大问题，但又几个坑需要注意：</p>
+<ul>
+<li>_config 文件中修改的时候，注意加空格</li>
+<li>写 Markdown 文件的时候，tag 、categories 的时候也一定要加空格，或者写成如下形式：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">tag:</div><div class="line">- Java</div><div class="line">- Android</div><div class="line">categories:</div><div class="line">- Tech</div></pre></td></tr></table></figure>
+<ul>
+<li>设置logo</li>
+</ul>
+<blockquote>
+<p>主题配置文件中 <code>favicon: images/logo.png</code> </p>
+</blockquote>
+<ul>
+<li><p>添加评论</p>
+<p>添加评论的话，不要用多说（快要关闭了），改用 disqus </p>
+</li>
+<li><p>添加阅读量</p>
+<p><a href="http://www.jeyzhang.com/hexo-next-add-post-views.html" target="_blank" rel="external">阅读量</a></p>
+</li>
+<li><p>设置 RSS 功能，需要下载插件</p>
+<p><a href="http://www.jianshu.com/p/264024768d03" target="_blank" rel="external">设置RSS</a></p>
+</li>
+</ul>
+<h4 id="绑定域名（可选）"><a href="#绑定域名（可选）" class="headerlink" title="绑定域名（可选）"></a>绑定域名（可选）</h4><p>作为一个技术博客，怎么能甘心依附于一个二级域名呢？去阿里云上买一个域名，添加解析，然后在自己的本地文件中也添加好解析，便大功告成，具体步骤可以参考这篇文章。</p>
+<p><a href="http://www.jianshu.com/p/cea41e5c9b2a" target="_blank" rel="external">Hexo 博客绑定域名</a> </p>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>大致功能就这样，只要善用搜索引擎，没有什么问题解决不了的。坚持下去，记录自己学习的点滴。</p>
+<p>### </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;寒假的时候就想搭个博客玩了，一直没有具体实施。现在终于花费了 1 天的时间撘成了，心情还是有点小激动。以后就会将一些技术方面的文章、学习心得
+    
+    </summary>
+    
+      <category term="搭建博客" scheme="http://yoursite.com/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="搭建博客" scheme="http://yoursite.com/tags/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
+  
+</feed>
