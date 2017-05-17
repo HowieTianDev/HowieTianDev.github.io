@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-21T16:43:37.530Z</updated>
+  <updated>2017-05-17T13:30:55.248Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>鉴势平板开发总结</title>
+    <link href="http://yoursite.com/2017/05/17/%E9%89%B4%E5%8A%BF%E5%B9%B3%E6%9D%BF%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2017/05/17/鉴势平板开发总结/</id>
+    <published>2017-05-17T13:24:18.000Z</published>
+    <updated>2017-05-17T13:30:55.248Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h3><p>大概花了 10 天左右的时间，完成了「鉴势」平板的开发工作，整体难度到没有多大，但还是学习并巩固了不少知识，在此记录。</p>
+<h3 id="界面布局"><a href="#界面布局" class="headerlink" title="界面布局"></a>界面布局</h3><ul>
+<li>第一次做这种表格类型的 APP，也没想太多，直接把表格的线一个个的 <code>View</code> 画出来了。着重使用 <code>weight</code> 属性，能简化不少问题。画表格线，可以通过设置背景来实现，这样应该会简单一点。<code>tablelayout</code> 也可以尝试一下。</li>
+<li>应对这种多控件的布局，<code>ButterKnife</code> 必不可少，如果嫌这个也慢的话，也可以使用自动生成<code>ButterKnife</code> 注解的插件<code>ButterKnife Zelezny</code> ，显著提高生产效率。</li>
+<li>id 命名：感觉我命名的有点长，但感觉这样才好分辨。</li>
+</ul>
+<h3 id="资源管理"><a href="#资源管理" class="headerlink" title="资源管理"></a>资源管理</h3><ul>
+<li>由于使用的常量太多，建立一个常量类</li>
+<li>颜色、尺寸、字符串资源统一管理</li>
+</ul>
+<h3 id="DatePickerDialog"><a href="#DatePickerDialog" class="headerlink" title="DatePickerDialog"></a>DatePickerDialog</h3><p>熟悉了这个原生的日期选择控件，也可以使用<code>DialogFragment</code> 的方式来管理对话框（暂未实现）。</p>
+<h3 id="Spinner"><a href="#Spinner" class="headerlink" title="Spinner"></a>Spinner</h3><p>熟悉了这个原生的下拉列表控件，使用了最简单的设置字符串数组的方式来实现。也可以自己设置<code>adapter</code> ，自定义列表的样式。</p>
+<h3 id="Android-数据持久化技术"><a href="#Android-数据持久化技术" class="headerlink" title="Android 数据持久化技术"></a>Android 数据持久化技术</h3><ul>
+<li>SQLite 3：这个项目使用了 SQLite 存放了一张 user 表，用于用户的注册和登录。了解了基本的 SQLite 操作，安装了一个 SQLite 可视化工具。</li>
+<li>SharedPreference：一种轻量级的 Android 存储数据的方式，以键值对的方式保存，通过这个东西，实现了记住密码的操作。</li>
+</ul>
+<h3 id="Java-I-O-流"><a href="#Java-I-O-流" class="headerlink" title="Java I/O 流"></a>Java I/O 流</h3><p>感觉自己还不是很熟悉，基本知识还要加强。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">writeScada</span><span class="params">(String content)</span> </span>&#123;</div><div class="line">    File file = getContext().getExternalFilesDir(Environment.DIRECTORY_DCIM);</div><div class="line">    BufferedOutputStream bos = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">      bos = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(file, <span class="string">"SCADA 系统信息安全自查表.doc"</span>)));</div><div class="line">      bos.write(content.getBytes());</div><div class="line">      bos.flush();</div><div class="line">      bos.close();</div><div class="line">    &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</div><div class="line">      e.printStackTrace();</div><div class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">      e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>这次采用了按功能分包的方式，感觉比以前功能拆分更加清晰。</p>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>这次开发，发现自己很多基础的东西都掌握的不太好，这是以后需要着重加强的一点。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;写在前面的话&quot;&gt;&lt;a href=&quot;#写在前面的话&quot; class=&quot;headerlink&quot; title=&quot;写在前面的话&quot;&gt;&lt;/a&gt;写在前面的话&lt;/h3&gt;&lt;p&gt;大概花了 10 天左右的时间，完成了「鉴势」平板的开发工作，整体难度到没有多大，但还是学习并巩固了不少知识，
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+      <category term="项目总结" scheme="http://yoursite.com/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>HelloWorld 社团一年总结</title>
