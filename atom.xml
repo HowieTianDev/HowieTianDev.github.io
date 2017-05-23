@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-17T13:30:55.248Z</updated>
+  <updated>2017-05-23T00:37:15.340Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Kotlin 学习笔记（一）环境配置</title>
+    <link href="http://yoursite.com/2017/05/23/Kotlin-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
+    <id>http://yoursite.com/2017/05/23/Kotlin-学习笔记（一）环境配置/</id>
+    <published>2017-05-23T00:36:02.000Z</published>
+    <updated>2017-05-23T00:37:15.340Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="在前面说几句"><a href="#在前面说几句" class="headerlink" title="在前面说几句"></a>在前面说几句</h3><p>Google I/O 正式宣布将 Kotlin 作为 Android 的官方开发语言，大家学习 Kotlin 的热情瞬间高涨。今天就给大家分享点开发 Kotlin 的环境配置经验。虽然简单，但还是有一点坑。</p>
+<h3 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h3><ul>
+<li><p>直接在 setting -&gt; plugin 里面搜索 Kotlin 安装后重启 AS，这样就集成了开发 Kotlin 的最基础的环境，对了不要忘记配置 Kotlin 的依赖，可以用插件一键自动生成 Tools -&gt; Kotlin -&gt; Configure Kotlin in Project ，然后 sync gradle 即可。</p>
+</li>
+<li><p>我是看 <a href="https://github.com/wangjiegulu/kotlin-for-android-developers-zh/blob/master/ce_shi_shi_fou_yi_qie_jiu_xu.md" target="_blank" rel="external">Kotlin For Android Developer</a>  中文译文搭建的，里面要求在安装一个叫<code>Kotlin Extensions For Android</code> 的一个插件，它的作用是摆脱 <code>findViewById()</code> 的烦恼，可以直接引用 <code>xml</code> 的 id，作为变量名称。可是我怎么都找不到这个插件，在 <strong>JetBrans</strong> 官网也找不到，不知道是怎么回事。但是似乎仍能导入相应的包<code>import kotlinx.android.synthetic.main.activity_main.*</code> ，本以为难道两个插件功能叠加起来了，但在编译的时候还是出错了，<strong>unresolved reference kotlinx</strong> 找不到 kotlinx 的引用，在 Google 之后，终于解决了这个问题。</p>
+<blockquote>
+<p>在 project level 的 gradle 下添加如下代码：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; buildscript &#123;</div><div class="line">&gt;     dependencies &#123;</div><div class="line">&gt;         classpath <span class="string">"org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"</span></div><div class="line">&gt;     &#125;</div><div class="line">&gt; &#125;</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>在 app level 的 gradle 下添加如下代码：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; apply <span class="string">plugin:</span> <span class="string">'kotlin-android-extensions'</span></div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>最终，我没有下载 <code>Kotlin Extensions For Android</code> 这样个插件，而是通过手动添加 gradle 代码解决了这个问题。</p>
+</li>
+<li><p>暂时不推荐安装<code>anko</code> 插件，安装后，重新启动 AS 时，会出现打不开的现象，这样就很烦。</p>
+</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>官网上说是，AS 3.0 会直接集成 Kotlin，但是 3.0 好像没放出来。配置环境就是安装插件的问题，坑可能还有不少，一步步来填吧。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;在前面说几句&quot;&gt;&lt;a href=&quot;#在前面说几句&quot; class=&quot;headerlink&quot; title=&quot;在前面说几句&quot;&gt;&lt;/a&gt;在前面说几句&lt;/h3&gt;&lt;p&gt;Google I/O 正式宣布将 Kotlin 作为 Android 的官方开发语言，大家学习 Kotlin
+    
+    </summary>
+    
+      <category term="Kotlin" scheme="http://yoursite.com/categories/Kotlin/"/>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+      <category term="Kotlin" scheme="http://yoursite.com/tags/Kotlin/"/>
+    
+  </entry>
   
   <entry>
     <title>鉴势平板开发总结</title>
