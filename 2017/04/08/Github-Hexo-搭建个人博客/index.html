@@ -98,7 +98,7 @@
 <meta property="og:description" content="前言寒假的时候就想搭个博客玩了，一直没有具体实施。现在终于花费了 1 天的时间撘成了，心情还是有点小激动。以后就会将一些技术方面的文章、学习心得放到这里，这里就会成为我的「技术小天地」，希望自己技术能力得到提高，写作能力也能有长足的进步吧。 步骤概览 环境配置 Hexo 的安装、部署 NexT 主题的配置 绑定域名（可选）  环境配置 Git 的安装与配置  Git 的下载地址   Node.js">
 <meta property="og:image" content="http://yoursite.com/images/code0.png">
 <meta property="og:image" content="http://yoursite.com/images/code1.png">
-<meta property="og:updated_time" content="2017-04-10T04:38:57.691Z">
+<meta property="og:updated_time" content="2017-07-16T01:05:22.031Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub + Hexo 搭建个人博客">
 <meta name="twitter:description" content="前言寒假的时候就想搭个博客玩了，一直没有具体实施。现在终于花费了 1 天的时间撘成了，心情还是有点小激动。以后就会将一些技术方面的文章、学习心得放到这里，这里就会成为我的「技术小天地」，希望自己技术能力得到提高，写作能力也能有长足的进步吧。 步骤概览 环境配置 Hexo 的安装、部署 NexT 主题的配置 绑定域名（可选）  环境配置 Git 的安装与配置  Git 的下载地址   Node.js">
@@ -443,7 +443,7 @@
 <p><a href="https://github.com/" target="_blank" rel="external">GitHub 的官网</a> </p>
 </li>
 <li><p>配置 SSH key</p>
-<p>Linux 与 Mac都是默认安装了 SSH ，而 Windows 系统安装了 Git Bash 应该也是带了 SSH 的。大家可以在终端（win 下在 Git Bash 里）输入 ssh ,如果出现以下提示证明你本机已经安装 SSH ，否则请自行安装</p>
+<p>Linux 与 Mac 都是默认安装了 SSH ，而 Windows 系统安装了 Git Bash 应该也是带了 SSH 的。大家可以在终端（win 下在 Git Bash 里）输入 ssh ,如果出现以下提示证明你本机已经安装 SSH ，否则请自行安装</p>
 <p><img src="/images/code0.png" alt="code0">  </p>
 <p>紧接着输入 <code>ssh-keygen -t rsa</code> ，指定 rsa 算法生成算法密钥，接着连续三个回车键（不需    要输入密码），然后会生成两个文件 <strong>id_ras</strong> 和 <strong>id_ras.pub</strong> ，而 <strong>id_ras</strong> 是密钥，<strong>id_ras.pub</strong>  是公钥。这两个文件默认分别在如下目录下生成：</p>
 <p><strong>/c/Documents and Settings/username/.ssh</strong>   </p>
@@ -472,6 +472,7 @@
 <p><code>hexo g</code> 生成博客</p>
 <p><code>hexo s</code> 启动本地服务预览</p>
 <p><code>hexo s -g</code> 两者也可以合并起来</p>
+<p><code>hexo deploy</code> 可以将本地博客上传至 Git 仓库</p>
 <p>然后在浏览器中输入「localhost:4000」即可预览已生成的博客</p>
 </li>
 </ol>
