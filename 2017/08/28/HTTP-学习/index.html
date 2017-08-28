@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java,Android," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -89,17 +89,21 @@
 
 
 
-<meta name="description" content="前言经常听什么「回调」啊，Android 框架里什么生命周期啊，各种监听事件啊，直白一点，各种带「on」的方法，都是「回调方法」，一直想了解，但是一直没理解清楚。现在参考了网上的一些例子，梳理一下。 PS：首先要清楚 Java 中接口的相关概念，其次要有一点「事件分发机制」的了解（暂时还没弄清楚，以后写博客总结）。 概念A 类中定义一个方法，这个方法中用到一个接口变量和该接口中的方法，但这个接口中">
-<meta name="keywords" content="Java,Android">
+<meta name="description" content="1. HTTP 请求报文格式请求行、请求头、请求体 请求行：请求方法、请求地址、协议版本  请求方法：GET、POST、DELETE、PUT 比较常用 请求地址：URL 组成    PATH 是 URL 主机以后的部分，即包含了Query String。 2. HTTP 相应报文格式响应状态行、响应头、响应体 3. HeaderHeader 可用于传递一些附加信息，格式：键: 值 ，注意：冒号后面">
+<meta name="keywords">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android 回调机制理解">
-<meta property="og:url" content="http://yoursite.com/2017/04/16/Android-回调机制理解/index.html">
+<meta property="og:title" content="HTTP 学习">
+<meta property="og:url" content="http://yoursite.com/2017/08/28/HTTP-学习/index.html">
 <meta property="og:site_name" content="HowieTian's Blog">
-<meta property="og:description" content="前言经常听什么「回调」啊，Android 框架里什么生命周期啊，各种监听事件啊，直白一点，各种带「on」的方法，都是「回调方法」，一直想了解，但是一直没理解清楚。现在参考了网上的一些例子，梳理一下。 PS：首先要清楚 Java 中接口的相关概念，其次要有一点「事件分发机制」的了解（暂时还没弄清楚，以后写博客总结）。 概念A 类中定义一个方法，这个方法中用到一个接口变量和该接口中的方法，但这个接口中">
-<meta property="og:updated_time" content="2017-04-16T15:36:36.661Z">
+<meta property="og:description" content="1. HTTP 请求报文格式请求行、请求头、请求体 请求行：请求方法、请求地址、协议版本  请求方法：GET、POST、DELETE、PUT 比较常用 请求地址：URL 组成    PATH 是 URL 主机以后的部分，即包含了Query String。 2. HTTP 相应报文格式响应状态行、响应头、响应体 3. HeaderHeader 可用于传递一些附加信息，格式：键: 值 ，注意：冒号后面">
+<meta property="og:image" content="http://bmob-cdn-13242.b0.upaiyun.com/2017/08/28/aa5b59c74097948a803fd95d83396a8e.png">
+<meta property="og:image" content="http://bmob-cdn-13242.b0.upaiyun.com/2017/08/28/974c2990408fa2e480136ce84b75850f.png">
+<meta property="og:image" content="http://bmob-cdn-13242.b0.upaiyun.com/2017/08/28/279cd8f54051144c806d67393cfc9f20.png">
+<meta property="og:updated_time" content="2017-08-28T04:40:10.792Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android 回调机制理解">
-<meta name="twitter:description" content="前言经常听什么「回调」啊，Android 框架里什么生命周期啊，各种监听事件啊，直白一点，各种带「on」的方法，都是「回调方法」，一直想了解，但是一直没理解清楚。现在参考了网上的一些例子，梳理一下。 PS：首先要清楚 Java 中接口的相关概念，其次要有一点「事件分发机制」的了解（暂时还没弄清楚，以后写博客总结）。 概念A 类中定义一个方法，这个方法中用到一个接口变量和该接口中的方法，但这个接口中">
+<meta name="twitter:title" content="HTTP 学习">
+<meta name="twitter:description" content="1. HTTP 请求报文格式请求行、请求头、请求体 请求行：请求方法、请求地址、协议版本  请求方法：GET、POST、DELETE、PUT 比较常用 请求地址：URL 组成    PATH 是 URL 主机以后的部分，即包含了Query String。 2. HTTP 相应报文格式响应状态行、响应头、响应体 3. HeaderHeader 可用于传递一些附加信息，格式：键: 值 ，注意：冒号后面">
+<meta name="twitter:image" content="http://bmob-cdn-13242.b0.upaiyun.com/2017/08/28/aa5b59c74097948a803fd95d83396a8e.png">
 
 
 
@@ -127,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/16/Android-回调机制理解/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/28/HTTP-学习/"/>
 
 
 
 
 
-  <title> Android 回调机制理解 | HowieTian's Blog </title>
+  <title> HTTP 学习 | HowieTian's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -306,7 +310,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/16/Android-回调机制理解/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/28/HTTP-学习/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="HowieTian">
@@ -327,7 +331,7 @@
             
             
               
-                Android 回调机制理解
+                HTTP 学习
               
             
           </h1>
@@ -342,8 +346,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-16T20:11:40+08:00">
-                2017-04-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T12:38:31+08:00">
+                2017-08-28
               </time>
             
 
@@ -365,8 +369,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
+                  <a href="/categories/计算机网络/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机网络</span>
                   </a>
                 </span>
 
@@ -383,9 +387,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/16/Android-回调机制理解/#comments" itemprop="discussionUrl">
+                <a href="/2017/08/28/HTTP-学习/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/04/16/Android-回调机制理解/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/08/28/HTTP-学习/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -393,7 +397,7 @@
 
           
           
-             <span id="/2017/04/16/Android-回调机制理解/" class="leancloud_visitors" data-flag-title="Android 回调机制理解">
+             <span id="/2017/08/28/HTTP-学习/" class="leancloud_visitors" data-flag-title="HTTP 学习">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -422,38 +426,40 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>经常听什么「回调」啊，Android 框架里什么生命周期啊，各种监听事件啊，直白一点，各种带「on」的方法，都是「回调方法」，一直想了解，但是一直没理解清楚。现在参考了网上的一些例子，梳理一下。</p>
-<p>PS：首先要清楚 Java 中接口的相关概念，其次要有一点「事件分发机制」的了解（暂时还没弄清楚，以后写博客总结）。</p>
-<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>A 类中定义一个方法，这个方法中用到一个接口变量和该接口中的方法，但这个接口中的抽象方法需要  B 类去实现，B类实现该方法后，它本身不会调用该方法，而是传递给 A 类，供 A 类调用，这种机制称为「回调」。</p>
-<h2 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h2><p>下面我们拿 button 的点击事件来分析模拟：</p>
-<ol>
-<li><p>首先，在 View 类中，找到<code>interface OnClickListener</code> ：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> interface <span class="title">OnClickListener</span><span class="params">()</span></span>&#123;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View var)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这是定义的接口，然后还有对应的接口变量：<code>public OnClickListener mOnClickListener</code> 。</p>
+        <h3 id="1-HTTP-请求报文格式"><a href="#1-HTTP-请求报文格式" class="headerlink" title="1. HTTP 请求报文格式"></a>1. HTTP 请求报文格式</h3><p>请求行、请求头、请求体</p>
+<p>请求行：请求方法、请求地址、协议版本</p>
+<ul>
+<li>请求方法：GET、POST、DELETE、PUT 比较常用</li>
+<li>请求地址：URL 组成 </li>
+</ul>
+<p><img src="http://bmob-cdn-13242.b0.upaiyun.com/2017/08/28/aa5b59c74097948a803fd95d83396a8e.png" alt="URL组成"></p>
+<p>PATH 是 URL 主机以后的部分，即包含了Query String。</p>
+<h3 id="2-HTTP-相应报文格式"><a href="#2-HTTP-相应报文格式" class="headerlink" title="2. HTTP 相应报文格式"></a>2. HTTP 相应报文格式</h3><p>响应状态行、响应头、响应体</p>
+<h3 id="3-Header"><a href="#3-Header" class="headerlink" title="3. Header"></a>3. Header</h3><p>Header 可用于传递一些附加信息，格式：<code>键: 值</code> ，注意：<strong>冒号后面有一个空格</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Content-Length: 1024</div><div class="line">Content-Type: text/plain</div></pre></td></tr></table></figure>
+<h3 id="4-请求体的-3-种形式"><a href="#4-请求体的-3-种形式" class="headerlink" title="4. 请求体的 3 种形式"></a>4. 请求体的 3 种形式</h3><ol>
+<li><p>移动开发者常见，请求体是任意类型，服务器不会解析请求体，请求体的处理需要自己解析，如 POST JSON 时候就是这类</p>
+<p><img src="http://bmob-cdn-13242.b0.upaiyun.com/2017/08/28/974c2990408fa2e480136ce84b75850f.png" alt="Http 请求方式 1"></p>
 </li>
-<li><p>其次，在 View 类中我们能找到 <code>setOnClickListener(OnClickListener l)</code> 方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setOnClickListener</span><span class="params">(OnClickListener l)</span></span>&#123;</div><div class="line">  <span class="keyword">if</span>(!isClickable())&#123;</div><div class="line">    setClickable(<span class="keyword">true</span>);</div><div class="line">  &#125;</div><div class="line">  getListenerInfo().mOnClickListener = l;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>该方法中，将 OnClickListener l 赋值给了 成员变量 mOnClickListener。</p>
+<li><p>第二种和第三种都有固定格式，是服务器端开发人员最先了解的两种。这里的格式要求就是 URL 中的 Query String 的格式要求：多个键值对之间用 <code>&amp;</code>  连接，键与值之间用 <code>=</code>  连接</p>
+<p><img src="http://bmob-cdn-13242.b0.upaiyun.com/2017/08/28/279cd8f54051144c806d67393cfc9f20.png" alt="Http 请求方式 2"></p>
 </li>
-<li><p>我们继续往下找，找到在 <code>performClick()</code> 方法中，执行了我们的<code>onClick()</code> 方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">performClick</span><span class="params">()</span> </span>&#123;  </div><div class="line">     sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED);  </div><div class="line">     ListenerInfo li = mListenerInfo;  </div><div class="line">     <span class="keyword">if</span> (li != <span class="keyword">null</span> &amp;&amp; li.mOnClickListener != <span class="keyword">null</span>) &#123;  </div><div class="line">         playSoundEffect(SoundEffectConstants.CLICK);  </div><div class="line">         li.mOnClickListener.onClick(<span class="keyword">this</span>);  </div><div class="line">         <span class="keyword">return</span> <span class="keyword">true</span>;  </div><div class="line">     &#125;  </div><div class="line">     <span class="keyword">return</span> <span class="keyword">false</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这就是概念中所说的，A 类中接口变量调用抽象方法的方法，也就是 B 类回调 A 类的方法。</p>
-</li>
-<li><p>在某一个 Activity 中，实现 button 的点击事件。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">button.setOnClickListener(<span class="keyword">new</span> OnClickListener&#123; </div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span></span>&#123;</div><div class="line">    <span class="comment">//做具体的操作</span></div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>这里就将一个接口的实现类作为参数传入 View 类中的 <code>setOnClickListener()</code> 方法中，从而为 View 类中的 成员变量 <code>mOnCLickLisetener</code> 赋值。</p>
-</li>
-<li><p>接着就是在父类中，也就是 View 类中执行 onClick() 方法，为什么会在父类中执行该方法呢？这就要说到 Android 中的另一个重要的机制——「事件分发机制」。当我们手指触摸到手机屏幕，就一定会执行<code>dispatchTouchEvent(MotionEvent event)</code> 方法。（此处省略10000字）</p>
-<p>简单点说就是：通过事件分发机制，最终调用了<code>performClick()</code> 方法，从而执行了<code>onClick()</code> 方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(!post(mPerformClick))&#123;</div><div class="line">  performClick();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<li><p>第三种请求体的请求体被分成为多个部分，<strong>文件上传</strong>时会被使用，这种格式最先应该是被用于邮件传输中，每个字段/文件都被boundary（<code>Content-Type</code>中指定）分成单独的段，每段以<code>--</code> 加 boundary开头，然后是该段的描述头，描述头之后空一行接内容，请求结束的标制为boundary后面加<code>--</code> </p>
 </li>
 </ol>
-<h2 id="为什么要回调"><a href="#为什么要回调" class="headerlink" title="为什么要回调"></a>为什么要回调</h2><p>这里体现了<strong>Java</strong> 中的「万事万物皆为对象」的理念，我们需要将普通物体的特性抽象出来，共性之中又有特性，每种特性交由不同的情况处理，通过接口暴露的方法可以减少很多重复，代码更加优雅。</p>
-<p>例如：Button 和 TextView 都继承于 View，在做点击事件时，点击的具体逻辑是不同的。我点Button 可能弹出一个 toast，而点击 TextView 弹出一个 Notifaction，这时候回调的好处就体现出来了，因为 Android 对外暴露了 onClickListener() 接口，里面要去具体实现 onClick() 方法，就在这我们就可以随意定制了。而 View 的话，不管你如何实现，它只负责调用 onClick() 方法。</p>
-<p>这样，代码更加简洁，逻辑也更加清晰，也算多态的一种实现吧。</p>
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="http://blog.csdn.net/devor/article/details/17883427" target="_blank" rel="external">Android 中的回调函数机制解析</a> </p>
-<p><a href="http://blog.csdn.net/xsf50717/article/details/50520462" target="_blank" rel="external">android 中的回调</a></p>
-<p><a href="http://www.jianshu.com/p/3f86b7949f20#" target="_blank" rel="external">Android 回调函数机制那点事</a> </p>
+<h3 id="4-TCP-协议的三次握手与四次挥手"><a href="#4-TCP-协议的三次握手与四次挥手" class="headerlink" title="4. TCP 协议的三次握手与四次挥手"></a>4. TCP 协议的三次握手与四次挥手</h3><p>TCP 协议作为底层的传输协议，在进行数据连接是，客户端和服务端要进行三次握手才能保证 client 与 server 能互相相应；在数据传输完成后，需要断开连接，要进行四次挥手，才能断开连接。</p>
+<h3 id="5-计算机网络的一些基本知识"><a href="#5-计算机网络的一些基本知识" class="headerlink" title="5. 计算机网络的一些基本知识"></a>5. 计算机网络的一些基本知识</h3><p>计算机网络从下到上分为7层：物理层、数据链路层、网络层、传输层、会话层、表示层、应用层</p>
+<p><strong>IP协议</strong> 位于网络层</p>
+<p><strong>TCP协议/UDP协议</strong> 位于传输层</p>
+<p><strong>HTTP协议</strong> 位于应用层</p>
+<p><strong>Socket</strong> 不是一种协议，而是对 TCP/UDP 协议的一种封装，对外提供了 API 接口，方便调用</p>
+<p><strong>HTTP是轿车，提供了封装或者显示数据的具体形式；Socket是发动机，提供了网络通信的能力。</strong> </p>
+<p><strong>TCP/UDP</strong> 区别：</p>
+<ol>
+<li>TCP是面向链接的，虽然说网络的不安全不稳定特性决定了多少次握手都不能保证连接的可靠性，但TCP的三次握手在最低限度上（实际上也很大程度上保证了）保证了连接的可靠性；而UDP不是面向连接的，UDP传送数据前并不与对方建立连接，对接收到的数据也不发送确认信号，发送端不知道数据是否会正确接收，当然也不用重发，所以说UDP是无连接的、不可靠的一种数据传输协议。</li>
+<li>也正由于1所说的特点，使得UDP的开销更小数据传输速率更高，因为不必进行收发数据的确认，所以UDP的实时性更好。</li>
+</ol>
+<p>知道了TCP和UDP的区别，就不难理解为何采用TCP传输协议的MSN比采用UDP的QQ传输文件慢了，但并不能说QQ的通信是不安全的，因为程序员可以手动对UDP的数据收发进行验证，比如发送方对每个数据包进行编号然后由接收方进行验证啊什么的，即使是这样，UDP因为在底层协议的封装上没有采用类似TCP的“三次握手”而实现了TCP所无法达到的传输效率。</p>
 
       
     </div>
@@ -502,14 +508,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Java/" rel="tag"># Java</a>
-          
-            <a href="/tags/Android/" rel="tag"># Android</a>
-          
-        </div>
-      
 
       
         
@@ -519,18 +517,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/21/HelloWorld-社团一年总结/" rel="next" title="HelloWorld 社团一年总结">
-                <i class="fa fa-chevron-left"></i> HelloWorld 社团一年总结
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/16/Java-接口深入理解/" rel="prev" title="Java 接口深入理解">
-                Java 接口深入理解 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/16/Git常用命令/" rel="prev" title="Git常用命令">
+                Git常用命令 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -726,7 +720,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">2.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实战"><span class="nav-number">3.</span> <span class="nav-text">实战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要回调"><span class="nav-number">4.</span> <span class="nav-text">为什么要回调</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">5.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-HTTP-请求报文格式"><span class="nav-number">1.</span> <span class="nav-text">1. HTTP 请求报文格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-HTTP-相应报文格式"><span class="nav-number">2.</span> <span class="nav-text">2. HTTP 相应报文格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Header"><span class="nav-number">3.</span> <span class="nav-text">3. Header</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-请求体的-3-种形式"><span class="nav-number">4.</span> <span class="nav-text">4. 请求体的 3 种形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-TCP-协议的三次握手与四次挥手"><span class="nav-number">5.</span> <span class="nav-text">4. TCP 协议的三次握手与四次挥手</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-计算机网络的一些基本知识"><span class="nav-number">6.</span> <span class="nav-text">5. 计算机网络的一些基本知识</span></a></li></ol></div>
             
 
           </div>
@@ -868,9 +862,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2017/04/16/Android-回调机制理解/';
-          this.page.identifier = '2017/04/16/Android-回调机制理解/';
-          this.page.title = 'Android 回调机制理解';
+          this.page.url = 'http://yoursite.com/2017/08/28/HTTP-学习/';
+          this.page.identifier = '2017/08/28/HTTP-学习/';
+          this.page.title = 'HTTP 学习';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-howietiandev-github-io.disqus.com/embed.js';

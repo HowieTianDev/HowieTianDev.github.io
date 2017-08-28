@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-15T16:44:09.188Z</updated>
+  <updated>2017-08-28T04:40:10.792Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,66 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>HTTP 学习</title>
+    <link href="http://yoursite.com/2017/08/28/HTTP-%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://yoursite.com/2017/08/28/HTTP-学习/</id>
+    <published>2017-08-28T04:38:31.000Z</published>
+    <updated>2017-08-28T04:40:10.792Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-HTTP-请求报文格式"><a href="#1-HTTP-请求报文格式" class="headerlink" title="1. HTTP 请求报文格式"></a>1. HTTP 请求报文格式</h3><p>请求行、请求头、请求体</p>
+<p>请求行：请求方法、请求地址、协议版本</p>
+<ul>
+<li>请求方法：GET、POST、DELETE、PUT 比较常用</li>
+<li>请求地址：URL 组成 </li>
+</ul>
+<p><img src="http://bmob-cdn-13242.b0.upaiyun.com/2017/08/28/aa5b59c74097948a803fd95d83396a8e.png" alt="URL组成"></p>
+<p>PATH 是 URL 主机以后的部分，即包含了Query String。</p>
+<h3 id="2-HTTP-相应报文格式"><a href="#2-HTTP-相应报文格式" class="headerlink" title="2. HTTP 相应报文格式"></a>2. HTTP 相应报文格式</h3><p>响应状态行、响应头、响应体</p>
+<h3 id="3-Header"><a href="#3-Header" class="headerlink" title="3. Header"></a>3. Header</h3><p>Header 可用于传递一些附加信息，格式：<code>键: 值</code> ，注意：<strong>冒号后面有一个空格</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Content-Length: 1024</div><div class="line">Content-Type: text/plain</div></pre></td></tr></table></figure>
+<h3 id="4-请求体的-3-种形式"><a href="#4-请求体的-3-种形式" class="headerlink" title="4. 请求体的 3 种形式"></a>4. 请求体的 3 种形式</h3><ol>
+<li><p>移动开发者常见，请求体是任意类型，服务器不会解析请求体，请求体的处理需要自己解析，如 POST JSON 时候就是这类</p>
+<p><img src="http://bmob-cdn-13242.b0.upaiyun.com/2017/08/28/974c2990408fa2e480136ce84b75850f.png" alt="Http 请求方式 1"></p>
+</li>
+<li><p>第二种和第三种都有固定格式，是服务器端开发人员最先了解的两种。这里的格式要求就是 URL 中的 Query String 的格式要求：多个键值对之间用 <code>&amp;</code>  连接，键与值之间用 <code>=</code>  连接</p>
+<p><img src="http://bmob-cdn-13242.b0.upaiyun.com/2017/08/28/279cd8f54051144c806d67393cfc9f20.png" alt="Http 请求方式 2"></p>
+</li>
+<li><p>第三种请求体的请求体被分成为多个部分，<strong>文件上传</strong>时会被使用，这种格式最先应该是被用于邮件传输中，每个字段/文件都被boundary（<code>Content-Type</code>中指定）分成单独的段，每段以<code>--</code> 加 boundary开头，然后是该段的描述头，描述头之后空一行接内容，请求结束的标制为boundary后面加<code>--</code> </p>
+</li>
+</ol>
+<h3 id="4-TCP-协议的三次握手与四次挥手"><a href="#4-TCP-协议的三次握手与四次挥手" class="headerlink" title="4. TCP 协议的三次握手与四次挥手"></a>4. TCP 协议的三次握手与四次挥手</h3><p>TCP 协议作为底层的传输协议，在进行数据连接是，客户端和服务端要进行三次握手才能保证 client 与 server 能互相相应；在数据传输完成后，需要断开连接，要进行四次挥手，才能断开连接。</p>
+<h3 id="5-计算机网络的一些基本知识"><a href="#5-计算机网络的一些基本知识" class="headerlink" title="5. 计算机网络的一些基本知识"></a>5. 计算机网络的一些基本知识</h3><p>计算机网络从下到上分为7层：物理层、数据链路层、网络层、传输层、会话层、表示层、应用层</p>
+<p><strong>IP协议</strong> 位于网络层</p>
+<p><strong>TCP协议/UDP协议</strong> 位于传输层</p>
+<p><strong>HTTP协议</strong> 位于应用层</p>
+<p><strong>Socket</strong> 不是一种协议，而是对 TCP/UDP 协议的一种封装，对外提供了 API 接口，方便调用</p>
+<p><strong>HTTP是轿车，提供了封装或者显示数据的具体形式；Socket是发动机，提供了网络通信的能力。</strong> </p>
+<p><strong>TCP/UDP</strong> 区别：</p>
+<ol>
+<li>TCP是面向链接的，虽然说网络的不安全不稳定特性决定了多少次握手都不能保证连接的可靠性，但TCP的三次握手在最低限度上（实际上也很大程度上保证了）保证了连接的可靠性；而UDP不是面向连接的，UDP传送数据前并不与对方建立连接，对接收到的数据也不发送确认信号，发送端不知道数据是否会正确接收，当然也不用重发，所以说UDP是无连接的、不可靠的一种数据传输协议。</li>
+<li>也正由于1所说的特点，使得UDP的开销更小数据传输速率更高，因为不必进行收发数据的确认，所以UDP的实时性更好。</li>
+</ol>
+<p>知道了TCP和UDP的区别，就不难理解为何采用TCP传输协议的MSN比采用UDP的QQ传输文件慢了，但并不能说QQ的通信是不安全的，因为程序员可以手动对UDP的数据收发进行验证，比如发送方对每个数据包进行编号然后由接收方进行验证啊什么的，即使是这样，UDP因为在底层协议的封装上没有采用类似TCP的“三次握手”而实现了TCP所无法达到的传输效率。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-HTTP-请求报文格式&quot;&gt;&lt;a href=&quot;#1-HTTP-请求报文格式&quot; class=&quot;headerlink&quot; title=&quot;1. HTTP 请求报文格式&quot;&gt;&lt;/a&gt;1. HTTP 请求报文格式&lt;/h3&gt;&lt;p&gt;请求行、请求头、请求体&lt;/p&gt;
+&lt;p&gt;请求行：请
+    
+    </summary>
+    
+      <category term="计算机网络" scheme="http://yoursite.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Git常用命令</title>
     <link href="http://yoursite.com/2017/07/16/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
     <id>http://yoursite.com/2017/07/16/Git常用命令/</id>
     <published>2017-07-15T16:32:10.000Z</published>
-    <updated>2017-07-15T16:44:09.188Z</updated>
+    <updated>2017-07-16T01:31:32.501Z</updated>
     
     <content type="html"><![CDATA[<h3 id="配置信息"><a href="#配置信息" class="headerlink" title="配置信息"></a>配置信息</h3><ul>
 <li><p>全局配置个人信息，如果想只配置本项目的信息，去掉<code>--global</code>  </p>
