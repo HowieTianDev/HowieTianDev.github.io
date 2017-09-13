@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[URI 与 URL 的区别]]></title>
+      <url>%2F2017%2F09%2F13%2FURI-%E4%B8%8E-URL-%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
+      <content type="text"><![CDATA[1. 定义：URI: Uniform Resource Identifier，统一资源标识符 URL: Uniform Resource Location，统一资源定位符 URI 是一个用于标识某一互联网资源名称的字符串。这种标识允许用户对网络中的资源通过特定的协议进行交互操作。URI 的最常见的形式是 URL，经常指定为非正式的网址。更罕见的用法是 URN（统一资源名称），其目的是通过提供一种途径。用于在特定的命名空间资源的标识，以补充网址。 通俗来讲，URL 和 URN 是 URI 的子集，URI 属于 URL 更高层次的抽象，一种字符串文本标准。 三者关系如下图： 2.区别URI 只是起到一种标识作用即可，并不一定非要指出访问这个资源的路径，以及如何访问。而 URL 就必须指出访问协议 ，访问路径 。打个比方，要唯一表示一个人，可以用身份证号来表示，这可以说是 URI，但不能说是 URL，但是如果采用这个人的家庭住址来表示，这可以说是 URL 也可以说是 URI。所有的 URL 都是 URI，但是并非所有的 URI 都是 URL。 下面看看具体的例子： ftp://ftp.is.co.za/rfc/rfc1808.txt (also a URL because of the protocol) http://www.ietf.org/rfc/rfc2396.txt (also a URL because of the protocol) ldap://[2001:db8::7]/c=GB?objectClass?one (also a URL because of the protocol) mailto:John.Doe@example.com (also a URL because of the protocol) news:comp.infosystems.www.servers.unix (also a URL because of the protocol) tel:+1-816-555-1212 telnet://192.0.2.16:80/ (also a URL because of the protocol) urn:oasis:names:specification:docbook:dtd:xml:4.1.2 这些都是 URI，但是只有提供了访问协议的才是 URL。]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[HTTP 学习]]></title>
       <url>%2F2017%2F08%2F28%2FHTTP-%E5%AD%A6%E4%B9%A0%2F</url>
       <content type="text"><![CDATA[1. HTTP 请求报文格式请求行、请求头、请求体 请求行：请求方法、请求地址、协议版本 请求方法：GET、POST、DELETE、PUT 比较常用 请求地址：URL 组成 PATH 是 URL 主机以后的部分，即包含了Query String。 2. HTTP 相应报文格式响应状态行、响应头、响应体 3. HeaderHeader 可用于传递一些附加信息，格式：键: 值 ，注意：冒号后面有一个空格 12Content-Length: 1024Content-Type: text/plain 4. 请求体的 3 种形式 移动开发者常见，请求体是任意类型，服务器不会解析请求体，请求体的处理需要自己解析，如 POST JSON 时候就是这类 第二种和第三种都有固定格式，是服务器端开发人员最先了解的两种。这里的格式要求就是 URL 中的 Query String 的格式要求：多个键值对之间用 &amp; 连接，键与值之间用 = 连接 第三种请求体的请求体被分成为多个部分，文件上传时会被使用，这种格式最先应该是被用于邮件传输中，每个字段/文件都被boundary（Content-Type中指定）分成单独的段，每段以-- 加 boundary开头，然后是该段的描述头，描述头之后空一行接内容，请求结束的标制为boundary后面加-- 4. TCP 协议的三次握手与四次挥手TCP 协议作为底层的传输协议，在进行数据连接是，客户端和服务端要进行三次握手才能保证 client 与 server 能互相相应；在数据传输完成后，需要断开连接，要进行四次挥手，才能断开连接。 5. 计算机网络的一些基本知识计算机网络从下到上分为7层：物理层、数据链路层、网络层、传输层、会话层、表示层、应用层 IP协议 位于网络层 TCP协议/UDP协议 位于传输层 HTTP协议 位于应用层 Socket 不是一种协议，而是对 TCP/UDP 协议的一种封装，对外提供了 API 接口，方便调用 HTTP是轿车，提供了封装或者显示数据的具体形式；Socket是发动机，提供了网络通信的能力。 TCP/UDP 区别： TCP是面向链接的，虽然说网络的不安全不稳定特性决定了多少次握手都不能保证连接的可靠性，但TCP的三次握手在最低限度上（实际上也很大程度上保证了）保证了连接的可靠性；而UDP不是面向连接的，UDP传送数据前并不与对方建立连接，对接收到的数据也不发送确认信号，发送端不知道数据是否会正确接收，当然也不用重发，所以说UDP是无连接的、不可靠的一种数据传输协议。 也正由于1所说的特点，使得UDP的开销更小数据传输速率更高，因为不必进行收发数据的确认，所以UDP的实时性更好。 知道了TCP和UDP的区别，就不难理解为何采用TCP传输协议的MSN比采用UDP的QQ传输文件慢了，但并不能说QQ的通信是不安全的，因为程序员可以手动对UDP的数据收发进行验证，比如发送方对每个数据包进行编号然后由接收方进行验证啊什么的，即使是这样，UDP因为在底层协议的封装上没有采用类似TCP的“三次握手”而实现了TCP所无法达到的传输效率。]]></content>
