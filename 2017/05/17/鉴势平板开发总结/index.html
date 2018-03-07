@@ -94,9 +94,10 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="鉴势平板开发总结">
 <meta property="og:url" content="http://yoursite.com/2017/05/17/鉴势平板开发总结/index.html">
-<meta property="og:site_name" content="HowieTian's Blog">
+<meta property="og:site_name" content="HowieTian&#39;s Blog">
 <meta property="og:description" content="写在前面的话大概花了 10 天左右的时间，完成了「鉴势」平板的开发工作，整体难度到没有多大，但还是学习并巩固了不少知识，在此记录。 界面布局 第一次做这种表格类型的 APP，也没想太多，直接把表格的线一个个的 View 画出来了。着重使用 weight 属性，能简化不少问题。画表格线，可以通过设置背景来实现，这样应该会简单一点。tablelayout 也可以尝试一下。 应对这种多控件的布局，But">
-<meta property="og:updated_time" content="2017-05-17T13:30:55.248Z">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-05-17T13:30:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="鉴势平板开发总结">
 <meta name="twitter:description" content="写在前面的话大概花了 10 天左右的时间，完成了「鉴势」平板的开发工作，整体难度到没有多大，但还是学习并巩固了不少知识，在此记录。 界面布局 第一次做这种表格类型的 APP，也没想太多，直接把表格的线一个个的 View 画出来了。着重使用 weight 属性，能简化不少问题。画表格线，可以通过设置背景来实现，这样应该会简单一点。tablelayout 也可以尝试一下。 应对这种多控件的布局，But">
@@ -439,7 +440,7 @@
 <li>SharedPreference：一种轻量级的 Android 存储数据的方式，以键值对的方式保存，通过这个东西，实现了记住密码的操作。</li>
 </ul>
 <h3 id="Java-I-O-流"><a href="#Java-I-O-流" class="headerlink" title="Java I/O 流"></a>Java I/O 流</h3><p>感觉自己还不是很熟悉，基本知识还要加强。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">writeScada</span><span class="params">(String content)</span> </span>&#123;</div><div class="line">    File file = getContext().getExternalFilesDir(Environment.DIRECTORY_DCIM);</div><div class="line">    BufferedOutputStream bos = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">      bos = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(file, <span class="string">"SCADA 系统信息安全自查表.doc"</span>)));</div><div class="line">      bos.write(content.getBytes());</div><div class="line">      bos.flush();</div><div class="line">      bos.close();</div><div class="line">    &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</div><div class="line">      e.printStackTrace();</div><div class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">      e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">writeScada</span><span class="params">(String content)</span> </span>&#123;</span><br><span class="line">    File file = getContext().getExternalFilesDir(Environment.DIRECTORY_DCIM);</span><br><span class="line">    BufferedOutputStream bos = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      bos = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(file, <span class="string">"SCADA 系统信息安全自查表.doc"</span>)));</span><br><span class="line">      bos.write(content.getBytes());</span><br><span class="line">      bos.flush();</span><br><span class="line">      bos.close();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>这次采用了按功能分包的方式，感觉比以前功能拆分更加清晰。</p>
 <h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>这次开发，发现自己很多基础的东西都掌握的不太好，这是以后需要着重加强的一点。</p>
 
@@ -507,8 +508,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/23/Kotlin-学习笔记（一）环境配置/" rel="next" title="Kotlin 学习笔记（一）环境配置">
-                <i class="fa fa-chevron-left"></i> Kotlin 学习笔记（一）环境配置
+              <a href="/2017/04/21/HelloWorld-社团一年总结/" rel="next" title="HelloWorld 社团一年总结">
+                <i class="fa fa-chevron-left"></i> HelloWorld 社团一年总结
               </a>
             
           </div>
@@ -517,8 +518,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/21/HelloWorld-社团一年总结/" rel="prev" title="HelloWorld 社团一年总结">
-                HelloWorld 社团一年总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/23/Kotlin-学习笔记（一）环境配置/" rel="prev" title="Kotlin 学习笔记（一）环境配置">
+                Kotlin 学习笔记（一）环境配置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -613,7 +614,7 @@
                alt="HowieTian" />
           <p class="site-author-name" itemprop="name">HowieTian</p>
            
-              <p class="site-description motion-element" itemprop="description">做自己喜欢的事</p>
+              <p class="site-description motion-element" itemprop="description">HowieTian 博客 田浩宇</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -621,7 +622,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -632,7 +633,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -643,7 +644,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -739,8 +740,8 @@
 </script>
 <div class="copyright" >
   
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

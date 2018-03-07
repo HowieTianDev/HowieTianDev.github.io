@@ -94,9 +94,10 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kotlin 学习笔记（一）环境配置">
 <meta property="og:url" content="http://yoursite.com/2017/05/23/Kotlin-学习笔记（一）环境配置/index.html">
-<meta property="og:site_name" content="HowieTian's Blog">
+<meta property="og:site_name" content="HowieTian&#39;s Blog">
 <meta property="og:description" content="在前面说几句Google I/O 正式宣布将 Kotlin 作为 Android 的官方开发语言，大家学习 Kotlin 的热情瞬间高涨。今天就给大家分享点开发 Kotlin 的环境配置经验。虽然简单，但还是有一点坑。 安装插件 直接在 setting -&amp;gt; plugin 里面搜索 Kotlin 安装后重启 AS，这样就集成了开发 Kotlin 的最基础的环境，对了不要忘记配置 Kotlin">
-<meta property="og:updated_time" content="2017-05-23T00:37:15.340Z">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-05-23T00:37:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kotlin 学习笔记（一）环境配置">
 <meta name="twitter:description" content="在前面说几句Google I/O 正式宣布将 Kotlin 作为 Android 的官方开发语言，大家学习 Kotlin 的热情瞬间高涨。今天就给大家分享点开发 Kotlin 的环境配置经验。虽然简单，但还是有一点坑。 安装插件 直接在 setting -&amp;gt; plugin 里面搜索 Kotlin 安装后重启 AS，这样就集成了开发 Kotlin 的最基础的环境，对了不要忘记配置 Kotlin">
@@ -426,15 +427,15 @@
 <h3 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h3><ul>
 <li><p>直接在 setting -&gt; plugin 里面搜索 Kotlin 安装后重启 AS，这样就集成了开发 Kotlin 的最基础的环境，对了不要忘记配置 Kotlin 的依赖，可以用插件一键自动生成 Tools -&gt; Kotlin -&gt; Configure Kotlin in Project ，然后 sync gradle 即可。</p>
 </li>
-<li><p>我是看 <a href="https://github.com/wangjiegulu/kotlin-for-android-developers-zh/blob/master/ce_shi_shi_fou_yi_qie_jiu_xu.md" target="_blank" rel="external">Kotlin For Android Developer</a>  中文译文搭建的，里面要求在安装一个叫<code>Kotlin Extensions For Android</code> 的一个插件，它的作用是摆脱 <code>findViewById()</code> 的烦恼，可以直接引用 <code>xml</code> 的 id，作为变量名称。可是我怎么都找不到这个插件，在 <strong>JetBrans</strong> 官网也找不到，不知道是怎么回事。但是似乎仍能导入相应的包<code>import kotlinx.android.synthetic.main.activity_main.*</code> ，本以为难道两个插件功能叠加起来了，但在编译的时候还是出错了，<strong>unresolved reference kotlinx</strong> 找不到 kotlinx 的引用，在 Google 之后，终于解决了这个问题。</p>
+<li><p>我是看 <a href="https://github.com/wangjiegulu/kotlin-for-android-developers-zh/blob/master/ce_shi_shi_fou_yi_qie_jiu_xu.md" target="_blank" rel="noopener">Kotlin For Android Developer</a>  中文译文搭建的，里面要求在安装一个叫<code>Kotlin Extensions For Android</code> 的一个插件，它的作用是摆脱 <code>findViewById()</code> 的烦恼，可以直接引用 <code>xml</code> 的 id，作为变量名称。可是我怎么都找不到这个插件，在 <strong>JetBrans</strong> 官网也找不到，不知道是怎么回事。但是似乎仍能导入相应的包<code>import kotlinx.android.synthetic.main.activity_main.*</code> ，本以为难道两个插件功能叠加起来了，但在编译的时候还是出错了，<strong>unresolved reference kotlinx</strong> 找不到 kotlinx 的引用，在 Google 之后，终于解决了这个问题。</p>
 <blockquote>
 <p>在 project level 的 gradle 下添加如下代码：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt; buildscript &#123;</div><div class="line">&gt;     dependencies &#123;</div><div class="line">&gt;         classpath <span class="string">"org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"</span></div><div class="line">&gt;     &#125;</div><div class="line">&gt; &#125;</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; buildscript &#123;</span><br><span class="line">&gt;     dependencies &#123;</span><br><span class="line">&gt;         classpath <span class="string">"org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"</span></span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>&gt;</p>
 <blockquote>
 <p>在 app level 的 gradle 下添加如下代码：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; apply <span class="string">plugin:</span> <span class="string">'kotlin-android-extensions'</span></div><div class="line">&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; apply <span class="string">plugin:</span> <span class="string">'kotlin-android-extensions'</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>最终，我没有下载 <code>Kotlin Extensions For Android</code> 这样个插件，而是通过手动添加 gradle 代码解决了这个问题。</p>
 </li>
@@ -507,8 +508,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/16/Git常用命令/" rel="next" title="Git常用命令">
-                <i class="fa fa-chevron-left"></i> Git常用命令
+              <a href="/2017/05/17/鉴势平板开发总结/" rel="next" title="鉴势平板开发总结">
+                <i class="fa fa-chevron-left"></i> 鉴势平板开发总结
               </a>
             
           </div>
@@ -517,8 +518,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/05/17/鉴势平板开发总结/" rel="prev" title="鉴势平板开发总结">
-                鉴势平板开发总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/16/Git常用命令/" rel="prev" title="Git常用命令">
+                Git常用命令 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -613,7 +614,7 @@
                alt="HowieTian" />
           <p class="site-author-name" itemprop="name">HowieTian</p>
            
-              <p class="site-description motion-element" itemprop="description">做自己喜欢的事</p>
+              <p class="site-description motion-element" itemprop="description">HowieTian 博客 田浩宇</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -621,7 +622,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -632,7 +633,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -643,7 +644,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -739,8 +740,8 @@
 </script>
 <div class="copyright" >
   
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

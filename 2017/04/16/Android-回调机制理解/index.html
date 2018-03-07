@@ -94,9 +94,10 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 回调机制理解">
 <meta property="og:url" content="http://yoursite.com/2017/04/16/Android-回调机制理解/index.html">
-<meta property="og:site_name" content="HowieTian's Blog">
+<meta property="og:site_name" content="HowieTian&#39;s Blog">
 <meta property="og:description" content="前言经常听什么「回调」啊，Android 框架里什么生命周期啊，各种监听事件啊，直白一点，各种带「on」的方法，都是「回调方法」，一直想了解，但是一直没理解清楚。现在参考了网上的一些例子，梳理一下。 PS：首先要清楚 Java 中接口的相关概念，其次要有一点「事件分发机制」的了解（暂时还没弄清楚，以后写博客总结）。 概念A 类中定义一个方法，这个方法中用到一个接口变量和该接口中的方法，但这个接口中">
-<meta property="og:updated_time" content="2017-04-16T15:36:36.661Z">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-04-16T15:36:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 回调机制理解">
 <meta name="twitter:description" content="前言经常听什么「回调」啊，Android 框架里什么生命周期啊，各种监听事件啊，直白一点，各种带「on」的方法，都是「回调方法」，一直想了解，但是一直没理解清楚。现在参考了网上的一些例子，梳理一下。 PS：首先要清楚 Java 中接口的相关概念，其次要有一点「事件分发机制」的了解（暂时还没弄清楚，以后写博客总结）。 概念A 类中定义一个方法，这个方法中用到一个接口变量和该接口中的方法，但这个接口中">
@@ -428,32 +429,32 @@
 <h2 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h2><p>下面我们拿 button 的点击事件来分析模拟：</p>
 <ol>
 <li><p>首先，在 View 类中，找到<code>interface OnClickListener</code> ：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> interface <span class="title">OnClickListener</span><span class="params">()</span></span>&#123;</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View var)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> interface <span class="title">OnClickListener</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View var)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这是定义的接口，然后还有对应的接口变量：<code>public OnClickListener mOnClickListener</code> 。</p>
 </li>
 <li><p>其次，在 View 类中我们能找到 <code>setOnClickListener(OnClickListener l)</code> 方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setOnClickListener</span><span class="params">(OnClickListener l)</span></span>&#123;</div><div class="line">  <span class="keyword">if</span>(!isClickable())&#123;</div><div class="line">    setClickable(<span class="keyword">true</span>);</div><div class="line">  &#125;</div><div class="line">  getListenerInfo().mOnClickListener = l;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setOnClickListener</span><span class="params">(OnClickListener l)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!isClickable())&#123;</span><br><span class="line">    setClickable(<span class="keyword">true</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  getListenerInfo().mOnClickListener = l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>该方法中，将 OnClickListener l 赋值给了 成员变量 mOnClickListener。</p>
 </li>
 <li><p>我们继续往下找，找到在 <code>performClick()</code> 方法中，执行了我们的<code>onClick()</code> 方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">performClick</span><span class="params">()</span> </span>&#123;  </div><div class="line">     sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED);  </div><div class="line">     ListenerInfo li = mListenerInfo;  </div><div class="line">     <span class="keyword">if</span> (li != <span class="keyword">null</span> &amp;&amp; li.mOnClickListener != <span class="keyword">null</span>) &#123;  </div><div class="line">         playSoundEffect(SoundEffectConstants.CLICK);  </div><div class="line">         li.mOnClickListener.onClick(<span class="keyword">this</span>);  </div><div class="line">         <span class="keyword">return</span> <span class="keyword">true</span>;  </div><div class="line">     &#125;  </div><div class="line">     <span class="keyword">return</span> <span class="keyword">false</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">performClick</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">     sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED);  </span><br><span class="line">     ListenerInfo li = mListenerInfo;  </span><br><span class="line">     <span class="keyword">if</span> (li != <span class="keyword">null</span> &amp;&amp; li.mOnClickListener != <span class="keyword">null</span>) &#123;  </span><br><span class="line">         playSoundEffect(SoundEffectConstants.CLICK);  </span><br><span class="line">         li.mOnClickListener.onClick(<span class="keyword">this</span>);  </span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">true</span>;  </span><br><span class="line">     &#125;  </span><br><span class="line">     <span class="keyword">return</span> <span class="keyword">false</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这就是概念中所说的，A 类中接口变量调用抽象方法的方法，也就是 B 类回调 A 类的方法。</p>
 </li>
 <li><p>在某一个 Activity 中，实现 button 的点击事件。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">button.setOnClickListener(<span class="keyword">new</span> OnClickListener&#123; </div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span></span>&#123;</div><div class="line">    <span class="comment">//做具体的操作</span></div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">button.setOnClickListener(<span class="keyword">new</span> OnClickListener&#123; </span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span></span>&#123;</span><br><span class="line">    <span class="comment">//做具体的操作</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>这里就将一个接口的实现类作为参数传入 View 类中的 <code>setOnClickListener()</code> 方法中，从而为 View 类中的 成员变量 <code>mOnCLickLisetener</code> 赋值。</p>
 </li>
 <li><p>接着就是在父类中，也就是 View 类中执行 onClick() 方法，为什么会在父类中执行该方法呢？这就要说到 Android 中的另一个重要的机制——「事件分发机制」。当我们手指触摸到手机屏幕，就一定会执行<code>dispatchTouchEvent(MotionEvent event)</code> 方法。（此处省略10000字）</p>
 <p>简单点说就是：通过事件分发机制，最终调用了<code>performClick()</code> 方法，从而执行了<code>onClick()</code> 方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(!post(mPerformClick))&#123;</div><div class="line">  performClick();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!post(mPerformClick))&#123;</span><br><span class="line">  performClick();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h2 id="为什么要回调"><a href="#为什么要回调" class="headerlink" title="为什么要回调"></a>为什么要回调</h2><p>这里体现了<strong>Java</strong> 中的「万事万物皆为对象」的理念，我们需要将普通物体的特性抽象出来，共性之中又有特性，每种特性交由不同的情况处理，通过接口暴露的方法可以减少很多重复，代码更加优雅。</p>
 <p>例如：Button 和 TextView 都继承于 View，在做点击事件时，点击的具体逻辑是不同的。我点Button 可能弹出一个 toast，而点击 TextView 弹出一个 Notifaction，这时候回调的好处就体现出来了，因为 Android 对外暴露了 onClickListener() 接口，里面要去具体实现 onClick() 方法，就在这我们就可以随意定制了。而 View 的话，不管你如何实现，它只负责调用 onClick() 方法。</p>
 <p>这样，代码更加简洁，逻辑也更加清晰，也算多态的一种实现吧。</p>
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="http://blog.csdn.net/devor/article/details/17883427" target="_blank" rel="external">Android 中的回调函数机制解析</a> </p>
-<p><a href="http://blog.csdn.net/xsf50717/article/details/50520462" target="_blank" rel="external">android 中的回调</a></p>
-<p><a href="http://www.jianshu.com/p/3f86b7949f20#" target="_blank" rel="external">Android 回调函数机制那点事</a> </p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="http://blog.csdn.net/devor/article/details/17883427" target="_blank" rel="noopener">Android 中的回调函数机制解析</a> </p>
+<p><a href="http://blog.csdn.net/xsf50717/article/details/50520462" target="_blank" rel="noopener">android 中的回调</a></p>
+<p><a href="http://www.jianshu.com/p/3f86b7949f20#" target="_blank" rel="noopener">Android 回调函数机制那点事</a> </p>
 
       
     </div>
@@ -519,8 +520,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/21/HelloWorld-社团一年总结/" rel="next" title="HelloWorld 社团一年总结">
-                <i class="fa fa-chevron-left"></i> HelloWorld 社团一年总结
+              <a href="/2017/04/16/Java-接口深入理解/" rel="next" title="Java 接口深入理解">
+                <i class="fa fa-chevron-left"></i> Java 接口深入理解
               </a>
             
           </div>
@@ -529,8 +530,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/16/Java-接口深入理解/" rel="prev" title="Java 接口深入理解">
-                Java 接口深入理解 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/21/HelloWorld-社团一年总结/" rel="prev" title="HelloWorld 社团一年总结">
+                HelloWorld 社团一年总结 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -625,7 +626,7 @@
                alt="HowieTian" />
           <p class="site-author-name" itemprop="name">HowieTian</p>
            
-              <p class="site-description motion-element" itemprop="description">做自己喜欢的事</p>
+              <p class="site-description motion-element" itemprop="description">HowieTian 博客 田浩宇</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -633,7 +634,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -644,7 +645,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -655,7 +656,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -751,8 +752,8 @@
 </script>
 <div class="copyright" >
   
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
