@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-09-13T02:29:52.000Z</updated>
+  <updated>2018-03-21T15:19:16.571Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,20 +17,20 @@
   
   <entry>
     <title>URI 与 URL 的区别</title>
-    <link href="http://yoursite.com/2017/09/13/URI-%E4%B8%8E-URL-%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
-    <id>http://yoursite.com/2017/09/13/URI-与-URL-的区别/</id>
+    <link href="http://yoursite.com/2017/09/13/URI-URL-URN%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://yoursite.com/2017/09/13/URI-URL-URN的区别/</id>
     <published>2017-09-13T02:28:25.000Z</published>
-    <updated>2017-09-13T02:29:52.000Z</updated>
+    <updated>2018-03-21T15:19:16.571Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-定义："><a href="#1-定义：" class="headerlink" title="1. 定义："></a>1. 定义：</h3><p><strong>URI</strong>: Uniform Resource Identifier，统一资源标识符</p>
 <p><strong>URL</strong>: Uniform Resource Location，统一资源定位符</p>
-<p>URI 是一个用于标识某一互联网资源名称的字符串。这种标识允许用户对网络中的资源通过特定的协议进行交互操作。URI 的最常见的形式是 URL，经常指定为非正式的网址。更罕见的用法是 URN（统一资源名称），其目的是通过提供一种途径。用于在特定的命名空间资源的标识，以补充网址。</p>
-<p>通俗来讲，URL 和 URN 是 URI 的子集，URI 属于 URL 更高层次的抽象，一种字符串文本标准。</p>
+<p>URL结构是：协议：//主机名+端口/资源路径</p>
+<p><strong>URN：</strong> Uniform Resource Name，统一资源名称</p>
+<h3 id="2-三者关系"><a href="#2-三者关系" class="headerlink" title="2. 三者关系"></a>2. 三者关系</h3><p>URI 包括 URL 和 URN，URI 用来标识一个互联网的资源，是一种高级的抽象。URL 和 URN 是一种具体的 URI，即 URL 可以用来标识一个资源，而且还指明了如何定位这个资源，如何访问到这个资源；而 URN 是通过名字来标识资源，<code>mailto:java-net@java.sun.com</code> ，应用主要为磁力链接。</p>
+<p>所有的 URL 都是 URI，但是 URI 不一定都是 URL，只有带有访问协议的才是 URL，通俗地讲，如果唯一地标识一个人，身份证号可以唯一标识一个人，但是不能找到这个人；但是如果利用 <code>人类访问协议：//hdu.edu.cn/张三</code>  这样也可以唯一标识一个人，并能找到这个人，这样就是 URL 了，当然也是 URI。</p>
 <p>三者关系如下图：</p>
 <p><img src="http://bmob-cdn-13242.b0.upaiyun.com/2017/09/13/5b88fc6d407a2a6d8051c5d29756cd23.png" alt="三者关系"></p>
-<h3 id="2-区别"><a href="#2-区别" class="headerlink" title="2.区别"></a>2.区别</h3><p>URI 只是起到一种<strong>标识</strong>作用即可，并不一定非要指出访问这个资源的路径，以及如何访问。而 URL 就必须指出<strong>访问协议</strong> ，<strong>访问路径</strong> 。打个比方，要唯一表示一个人，可以用身份证号来表示，这可以说是 URI，但不能说是 URL，但是如果采用这个人的家庭住址来表示，这可以说是 URL 也可以说是 URI。所有的 URL 都是 URI，但是并非所有的 URI 都是 URL。</p>
-<p>下面看看具体的例子：</p>
-<ul>
+<h3 id="3-具体例子"><a href="#3-具体例子" class="headerlink" title="3. 具体例子"></a>3. 具体例子</h3><ul>
 <li>ftp://ftp.is.co.za/rfc/rfc1808.txt (also a URL because of the protocol)</li>
 <li><a href="http://www.ietf.org/rfc/rfc2396.txt" target="_blank" rel="noopener">http://www.ietf.org/rfc/rfc2396.txt</a> (also a URL because of the protocol)</li>
 <li>ldap://[2001:db8::7]/c=GB?objectClass?one (also a URL because of the protocol)</li>
