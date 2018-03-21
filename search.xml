@@ -4,7 +4,7 @@
     
     <entry>
       <title><![CDATA[URI、URL、URN 的区别]]></title>
-      <url>%2F2017%2F09%2F13%2FURI-URL-URN%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
+      <url>%2F2017%2F09%2F13%2FURI%20%E4%B8%8E%20URL%20%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
       <content type="text"><![CDATA[1. 定义：URI: Uniform Resource Identifier，统一资源标识符 URL: Uniform Resource Location，统一资源定位符 URL结构是：协议：//主机名+端口/资源路径 URN： Uniform Resource Name，统一资源名称 2. 三者关系URI 包括 URL 和 URN，URI 用来标识一个互联网的资源，是一种高级的抽象。URL 和 URN 是一种具体的 URI，即 URL 可以用来标识一个资源，而且还指明了如何定位这个资源，如何访问到这个资源；而 URN 是通过名字来标识资源，mailto:java-net@java.sun.com ，应用主要为磁力链接。 所有的 URL 都是 URI，但是 URI 不一定都是 URL，只有带有访问协议的才是 URL，通俗地讲，如果唯一地标识一个人，身份证号可以唯一标识一个人，但是不能找到这个人；但是如果利用 人类访问协议：//hdu.edu.cn/张三 这样也可以唯一标识一个人，并能找到这个人，这样就是 URL 了，当然也是 URI。 三者关系如下图： 3. 具体例子 ftp://ftp.is.co.za/rfc/rfc1808.txt (also a URL because of the protocol) http://www.ietf.org/rfc/rfc2396.txt (also a URL because of the protocol) ldap://[2001:db8::7]/c=GB?objectClass?one (also a URL because of the protocol) mailto:John.Doe@example.com (also a URL because of the protocol) news:comp.infosystems.www.servers.unix (also a URL because of the protocol) tel:+1-816-555-1212 telnet://192.0.2.16:80/ (also a URL because of the protocol) urn:oasis:names:specification:docbook:dtd:xml:4.1.2 这些都是 URI，但是只有提供了访问协议的才是 URL。]]></content>
     </entry>
 
