@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[nginx 反向代理配置二级域名]]></title>
+      <url>%2F2018%2F03%2F23%2Fnginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%2F</url>
+      <content type="text"><![CDATA[nginx 反向代理配置二级域名1. 前言最近在学 app 后端，我的 spring-boot 项目运行在 8080 端口，发现在访问 API 的时候，必须要加上对应的端口号（除非是默认的80端口号），这样就很不舒服，想着如何可以用一个二级域名指向主机的端口号，这样会看起来很舒服，也便于管理。 2.解决方法 配置域名 DNS 解析为隐式Url ，这样它就会把一个二级域名指向对应的端口， 只是简单地实现一个跳转功能，但是后面加 API 的路径，或者加一些参数都是不行的，除非你指向对应的文件。在记录那行写上 http://cenyan.xyz/hello/say，而且这样后面加参数也是不行。所以这种方法写 API不合适。 第二种方式来了，就是 DNS A类型，二级域名指向主机，然后通过 nginx 反向代理指向本机对应的端口。 安装 nginx：apt-get install nginx 完全卸载 nginx：sudo apt-get remove nginx nginx-common&amp;&amp;sudo apt-get purge nginx nginx-common&amp;&amp;sudo apt-get autoremove&amp;&amp;sudo apt-get remove nginx-full nginx-common 运行 nginx：nginx 重新运行 nginx：nginx -s reload 不要使用 service nginx start service nginx stop ,会出现莫名其妙的问题 在 etc/nginx/nginx.conf 文件中 http 块中添加 server 块： 这样在访问 api.cenyan.xyz 的时候就可以访问到主机的 8080 端口了。 修改完毕后，重新加载 nginx nginx -s reload 即可。 3. 总结这可能是最简单的 nginx 反向代理了吧，还有负载均衡的一些内容，暂时也用不到，有空可以学习下nginx 的相关知识，真的，程序员需要懂一些后端的知识。持续学习！]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[URI、URL、URN 的区别]]></title>
       <url>%2F2017%2F09%2F13%2FURI%20%E4%B8%8E%20URL%20%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
       <content type="text"><![CDATA[1. 定义：URI: Uniform Resource Identifier，统一资源标识符 URL: Uniform Resource Location，统一资源定位符 URL结构是：协议：//主机名+端口/资源路径 URN： Uniform Resource Name，统一资源名称 2. 三者关系URI 包括 URL 和 URN，URI 用来标识一个互联网的资源，是一种高级的抽象。URL 和 URN 是一种具体的 URI，即 URL 可以用来标识一个资源，而且还指明了如何定位这个资源，如何访问到这个资源；而 URN 是通过名字来标识资源，mailto:java-net@java.sun.com ，应用主要为磁力链接。 所有的 URL 都是 URI，但是 URI 不一定都是 URL，只有带有访问协议的才是 URL，通俗地讲，如果唯一地标识一个人，身份证号可以唯一标识一个人，但是不能找到这个人；但是如果利用 人类访问协议：//hdu.edu.cn/张三 这样也可以唯一标识一个人，并能找到这个人，这样就是 URL 了，当然也是 URI。 三者关系如下图： 3. 具体例子 ftp://ftp.is.co.za/rfc/rfc1808.txt (also a URL because of the protocol) http://www.ietf.org/rfc/rfc2396.txt (also a URL because of the protocol) ldap://[2001:db8::7]/c=GB?objectClass?one (also a URL because of the protocol) mailto:John.Doe@example.com (also a URL because of the protocol) news:comp.infosystems.www.servers.unix (also a URL because of the protocol) tel:+1-816-555-1212 telnet://192.0.2.16:80/ (also a URL because of the protocol) urn:oasis:names:specification:docbook:dtd:xml:4.1.2 这些都是 URI，但是只有提供了访问协议的才是 URL。]]></content>
