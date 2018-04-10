@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="HowieTian&#39;s Blog">
 <meta property="og:description" content="标题在 Markdown 中，你只需要在文本前面加上# ，通过设置# 的个数，来确定标题的级别  注意： # 与标题之间有一个空格 列表 文本1 文本2 文本3   只需要在文本前面加上- 、+ 、*  注意： - 与文本之间有一个空格 有序列表 文本1 文本2 文本3  只需要在文本前面加上1.  注意： 1. 与文本之间有一个空格 插入链接简书 格式为：[文本](链接) 插入图片格式为：![文">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-04-09T14:57:52.000Z">
+<meta property="og:updated_time" content="2018-04-10T07:22:29.784Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Markdown 语法学习">
 <meta name="twitter:description" content="标题在 Markdown 中，你只需要在文本前面加上# ，通过设置# 的个数，来确定标题的级别  注意： # 与标题之间有一个空格 列表 文本1 文本2 文本3   只需要在文本前面加上- 、+ 、*  注意： - 与文本之间有一个空格 有序列表 文本1 文本2 文本3  只需要在文本前面加上1.  注意： 1. 与文本之间有一个空格 插入链接简书 格式为：[文本](链接) 插入图片格式为：![文">
@@ -449,14 +449,15 @@
 <p>在文字前面加<code>&gt;</code> </p>
 <h3 id="粗体和斜体"><a href="#粗体和斜体" class="headerlink" title="粗体和斜体"></a>粗体和斜体</h3><p><em>斜体</em> ：在文本前后各加一个<code>*</code> ，如：<code>*文本*</code> </p>
 <p><strong>粗体</strong> ：在文本前后各加两个<code>*</code> ，如：<code>**文本**</code> </p>
+<p><strong><em>粗斜体</em></strong> ：在文本前后各家三个<code>*</code> ,如：<code>***文本***</code> </p>
+<h3 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h3><p><del>我是删除线</del>： 在文本前后各加两个<code>~</code> ,如：<code>~~文本~~</code> </p>
 <h3 id="代码引用"><a href="#代码引用" class="headerlink" title="代码引用"></a>代码引用</h3><ul>
 <li>单行代码引用：<code>hello world</code>  使用 ` 将语句包起来</li>
 <li>多行代码引用：</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">  System.out.println(<span class="string">"hello world"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用 ``` 将语句包起来</p>
-<h3 id="博客中插入图片"><a href="#博客中插入图片" class="headerlink" title="博客中插入图片"></a>博客中插入图片</h3><p><a href="http://www.qiuchengjia.cn/2016/06/07/%E5%8D%9A%E5%AE%A2/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87%EF%BC%8C%E9%9F%B3%E4%B9%90%EF%BC%8C%E8%A7%86%E9%A2%91/" target="_blank" rel="noopener">插入图片</a></p>
-<p>暂时先不采用「图床」的方式，直接加载本地图片解决吧</p>
+<p>使用 「<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 博客中插入图片</span><br><span class="line"></span><br><span class="line">[插入图片](http://www.qiuchengjia.cn/2016/06/07/%E5%8D%9A%E5%AE%A2/Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87%EF%BC%8C%E9%9F%B3%E4%B9%90%EF%BC%8C%E8%A7%86%E9%A2%91/)</span><br><span class="line"></span><br><span class="line">暂时先不采用「图床」的方式，直接加载本地图片解决吧。</span><br><span class="line"></span><br><span class="line">### 插入表格</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">|Name|Sport|Coding|</span><br><span class="line">|Tian|Basketball|Java|</span><br></pre></td></tr></table></figure></p>
+<p>用竖线将各个表格单元分开即可</p>
 <h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>这里只是暂时列出了几种最常用的 Markdown 语法，有一些高级语法，暂时还用不到，就先不写，等用到时再加以补充。以后写博客使用 Markdown + stormzhang 的排版标准来写，坚持下去，提高自己的写作能力。</p>
 
       
@@ -730,7 +731,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#标题"><span class="nav-number">1.</span> <span class="nav-text">标题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表"><span class="nav-number">2.</span> <span class="nav-text">列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有序列表"><span class="nav-number">3.</span> <span class="nav-text">有序列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入链接"><span class="nav-number">4.</span> <span class="nav-text">插入链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入图片"><span class="nav-number">5.</span> <span class="nav-text">插入图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入下划线"><span class="nav-number">6.</span> <span class="nav-text">插入下划线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用"><span class="nav-number">7.</span> <span class="nav-text">引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#粗体和斜体"><span class="nav-number">8.</span> <span class="nav-text">粗体和斜体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码引用"><span class="nav-number">9.</span> <span class="nav-text">代码引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#博客中插入图片"><span class="nav-number">10.</span> <span class="nav-text">博客中插入图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结语"><span class="nav-number">11.</span> <span class="nav-text">结语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#标题"><span class="nav-number">1.</span> <span class="nav-text">标题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表"><span class="nav-number">2.</span> <span class="nav-text">列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有序列表"><span class="nav-number">3.</span> <span class="nav-text">有序列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入链接"><span class="nav-number">4.</span> <span class="nav-text">插入链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入图片"><span class="nav-number">5.</span> <span class="nav-text">插入图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入下划线"><span class="nav-number">6.</span> <span class="nav-text">插入下划线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用"><span class="nav-number">7.</span> <span class="nav-text">引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#粗体和斜体"><span class="nav-number">8.</span> <span class="nav-text">粗体和斜体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除线"><span class="nav-number">9.</span> <span class="nav-text">删除线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码引用"><span class="nav-number">10.</span> <span class="nav-text">代码引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结语"><span class="nav-number">11.</span> <span class="nav-text">结语</span></a></li></ol></div>
             
 
           </div>
