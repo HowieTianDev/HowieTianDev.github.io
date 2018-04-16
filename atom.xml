@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-04-03T07:39:01.386Z</updated>
+  <updated>2018-04-16T13:18:48.772Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MVP架构学习(一)之概述</title>
+    <link href="http://yoursite.com/2018/04/16/MVP%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0-%E4%B8%80-%E4%B9%8B%E6%A6%82%E8%BF%B0/"/>
+    <id>http://yoursite.com/2018/04/16/MVP架构学习-一-之概述/</id>
+    <published>2018-04-16T13:17:11.000Z</published>
+    <updated>2018-04-16T13:18:48.772Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>原生MVC：</strong> 遇到大规模的应用时，就会变得代码难读，不好维护，无法测试的窘境。</p>
+<p>对于经典的 Android MVC 框架来说，如果只是简单的应用，业务逻辑写到 Activity 下面并无太多问题，但是业务逻辑逐渐变得复杂起来，每个页面之间有不同的数据交互和业务交流时，Activity 的代码的可读性、维护性变得很差。</p>
+<p>总结来说：构建框架的最终目的是增强项目代码的可读性、复用性、维护性和方便测试。</p>
+<h3 id="MVP同MVC对比"><a href="#MVP同MVC对比" class="headerlink" title="MVP同MVC对比"></a>MVP同MVC对比</h3><p><img src="http://bmob-cdn-13128.b0.upaiyun.com/2018/04/14/bbdc42cd4075abe780d632e2d923cb57.png" alt="mvp 同 mvc 对比"></p>
+<h4 id="MVC模式"><a href="#MVC模式" class="headerlink" title="MVC模式"></a>MVC模式</h4><p>原生的 Android 架构，自然就会形成 MVC 架构，layout.xml 充当 View 层，Activity 充当 Controller 层，一些 JavaBean 和 数据操作的类充当 Model 层。但是由于 View 层的控制能力较弱，如果 UI 需要动态地改变，必须在 Activity 中改变 UI。所以，Activity 里既有业务逻辑，又有 UI 控制的代码，同一个模块承担了两种职责。再者，Model 和 View 互相感知，耦合严重。</p>
+<h4 id="MVP模式"><a href="#MVP模式" class="headerlink" title="MVP模式"></a>MVP模式</h4><p>Model 层和 View 层不再相互感知，View 层通过 Presenter 层调用 Model 层，实现解耦，Model 层通过回调函数将获取的数据返回给 Presenter 层，Presenter 层再通过 View 的接口实现 View 的更新。同时，View 层由 Activity或Fragment 承担，责任单一划分。但是 View 层和 Presenter 层是相互感知的，为了解决这个问题，两者之间通过接口进行通信，来实现代码的解耦和可拓展性。</p>
+<h4 id="MVP结构"><a href="#MVP结构" class="headerlink" title="MVP结构"></a>MVP结构</h4><p><strong>M层：</strong> JavaBean、获取数据的操作类等（本地数据库或网络数据）。</p>
+<p><strong>V层：</strong> Activity 或 Fragment 负责 View 的显示与监听事件。</p>
+<p><strong>P层：</strong> 所有的业务逻辑代码实现，不含任何 Android API，纯的 Java 类，负责  M 层和 V 层之间的通信。</p>
+<h4 id="MVP优点"><a href="#MVP优点" class="headerlink" title="MVP优点"></a>MVP优点</h4><ol>
+<li>Model 和 View 完全分离，可以修改视图而不影响模型。</li>
+<li>可以更高效地使用模型，因为所有的交互发生在一个地方——Presenter 内部。</li>
+<li>我们可以将一个 Presenter 用于多个视图，而不需要改变 Presenter 的逻辑。这个特性非常适合模型变化频繁。</li>
+<li>如果我们将逻辑放入 Presenter 中，那么我们就可以脱离用户接口来测试这些逻辑。（单元测试）</li>
+</ol>
+<h4 id="MVP缺点"><a href="#MVP缺点" class="headerlink" title="MVP缺点"></a>MVP缺点</h4><ol>
+<li>View 层和 Prestenter 层交互频繁。</li>
+<li>代码量多，类变多了。</li>
+</ol>
+<h3 id="MVP大致实现"><a href="#MVP大致实现" class="headerlink" title="MVP大致实现"></a>MVP大致实现</h3><ol>
+<li>定义一个 interface 接口 XView，对应的Activity、Fragment实现这个 interface。</li>
+<li>编写 Model，里面的业务逻辑主要包括网络请求获取数据，数据库读取等耗时操作，通过 M 层，回调给 P 层，通知 V 层通知UI。</li>
+<li>编写 Presenter，P 层中持有 V 和 M 的引用，实现 P 层的回调，并且回调给 V层更新。</li>
+<li>Activity 中调用 P 层执行业务逻辑，更新 UI。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;原生MVC：&lt;/strong&gt; 遇到大规模的应用时，就会变得代码难读，不好维护，无法测试的窘境。&lt;/p&gt;
+&lt;p&gt;对于经典的 
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+      <category term="架构" scheme="http://yoursite.com/categories/Android/%E6%9E%B6%E6%9E%84/"/>
+    
+    
+      <category term="架构" scheme="http://yoursite.com/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+      <category term="MVP" scheme="http://yoursite.com/tags/MVP/"/>
+    
+  </entry>
   
   <entry>
     <title>流行的四大 APP 开发模式</title>
@@ -705,7 +757,7 @@
     <link href="http://yoursite.com/2017/04/09/Markdown-%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0/"/>
     <id>http://yoursite.com/2017/04/09/Markdown-语法学习/</id>
     <published>2017-04-09T02:55:12.000Z</published>
-    <updated>2018-04-10T07:22:29.784Z</updated>
+    <updated>2018-04-10T07:34:18.859Z</updated>
     
     <content type="html"><![CDATA[<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>在 Markdown 中，你只需要在文本前面加上<code>#</code> ，通过设置<code>#</code> 的个数，来确定标题的级别 </p>
 <p><strong>注意：</strong> <code>#</code> 与标题之间有一个空格</p>
