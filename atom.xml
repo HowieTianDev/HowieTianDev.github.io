@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-04-19T01:42:24.368Z</updated>
+  <updated>2018-06-27T01:35:18.543Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,117 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>海量数据存储复习</title>
+    <link href="http://yoursite.com/2018/06/27/%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%A4%8D%E4%B9%A0/"/>
+    <id>http://yoursite.com/2018/06/27/海量数据存储复习/</id>
+    <published>2018-06-27T01:33:45.000Z</published>
+    <updated>2018-06-27T01:35:18.543Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="一、搜索引擎发展史"><a href="#一、搜索引擎发展史" class="headerlink" title="一、搜索引擎发展史"></a>一、搜索引擎发展史</h3><p>ARPAnet</p>
+<p>Google</p>
+<h3 id="二、搜索引擎体系结构概述"><a href="#二、搜索引擎体系结构概述" class="headerlink" title="二、搜索引擎体系结构概述"></a>二、搜索引擎体系结构概述</h3><p>数据抓取子系统，内容索引子系统，内容检索子系统，链接分析子系统</p>
+<p><strong>爬虫</strong>：一个自动抓取网页的程序，时效性、全面性、高效性，链式原理，递归抓取、</p>
+<p>累积式抓取（实时性低）、增量式抓取（实时性高）</p>
+<p>全面性：暗网、深网</p>
+<p>高效性：系统运行效率，网络带宽消耗B&gt;S/T,</p>
+<p>robots.txt文件：User-Agent：适用哪个爬虫；Allow：允许抓取的网页对象；Disallow</p>
+<p><strong>内容索引子系统：</strong> </p>
+<p>why?索引？不能使用遍历的匹配方法，需要对文档的表示建立索引。为了提高检索效率，应该按照一定的规则建立索引。</p>
+<p>倒排索引：词项term，文档：document，位置：position；根据词来找文档</p>
+<p>构建词项列表，（分词）分词算法（基于词典的方法，基于统计的方法，基于规则的方法）倒排索引压缩，减少索引占用的磁盘空间，文档、词项编号压缩：可变长编码</p>
+<p>正排索引：根据文档来找词</p>
+<p>提供高效、准确的索引查询服务，层次索引结构</p>
+<p><strong>内容检索子系统</strong></p>
+<p>理解用户查询需求，相似度计算，生成结果网页列表，相关度排序</p>
+<p><strong>链接分析子系统</strong></p>
+<p>网络资源质量评估（推荐系统）PageRank、扩充文档描述内容</p>
+<p><strong>共性的设计理念：</strong> </p>
+<p>用户需求驱动，强调效率的设计理念，强调可扩展性，有损优化的设计理念</p>
+<h3 id="三、数据抓取子系统"><a href="#三、数据抓取子系统" class="headerlink" title="三、数据抓取子系统"></a>三、数据抓取子系统</h3><p>及时、高效 尽可能多的万维网页面，建立它们之间的超链接关系</p>
+<p>时效性、全面性、高效性</p>
+<p>无序=》有序</p>
+<p>全、新、块、省</p>
+<p><strong>网络协议</strong> </p>
+<p>搜索引擎与网页内容提供者存在<strong>互相依存</strong>的关系，“网络协议”URL、HTTP、HTTPS</p>
+<p>User-Agent：用来表明终端程序的身份</p>
+<p>robots:User-agent：指明适用于哪个爬虫，Disallow:禁止访问的对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">User-agent:slurp</span><br><span class="line">Disallow:/                      //禁止slurp 抓取所有的内容</span><br></pre></td></tr></table></figure>
+<p>meta标签：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"robots"</span> <span class="attr">content</span>=<span class="string">"index/noindex"</span> <span class="attr">follow</span>/<span class="attr">nofollow</span>/&gt;</span></span><br><span class="line">// index 禁止与否拓展页面</span><br><span class="line">// follow 禁止与否拓展链接</span><br></pre></td></tr></table></figure>
+<p>Site Map:为了让网站的网页更全面被抓取</p>
+<p><strong>网页抓取和解析</strong></p>
+<p>同步抓取、异步抓取</p>
+<p>DNS预解析</p>
+<p>遵守协议</p>
+<p>DOM 树</p>
+<p><strong>链接选取策略</strong></p>
+<p>抓取优先级策略：深度优先，广度优先（常用），反向链接数（受欢迎数），局部pageRank（评估网页质量，网页优先抓取），最佳优先，首先预测网页是否有用</p>
+<p>网页更新策略：重返，更新；统一更新，个性化更新</p>
+<p>链接去重策略：关键在于记住爬行历史，哈希表</p>
+<p><strong>重复与低质量页面内容检测</strong></p>
+<p>I-Match算法</p>
+<h3 id="如何实现高效率网页数据抓取？"><a href="#如何实现高效率网页数据抓取？" class="headerlink" title="如何实现高效率网页数据抓取？"></a>如何实现高效率网页数据抓取？</h3><h3 id="四、内容索引子系统"><a href="#四、内容索引子系统" class="headerlink" title="四、内容索引子系统"></a>四、内容索引子系统</h3><p>倒排索引、正排索引、索引查询</p>
+<p><strong>构建词项列表：</strong> </p>
+<p>挑战：高效、可扩展</p>
+<p>分词-》建立词项列表</p>
+<p>词项处理：去除频率高、语义信息少的词，倒排索引精简</p>
+<p>中文分词：词典（机械分词法，正向、逆向、双向匹配法）、统计、理解</p>
+<p>难点：交叉歧义，组合歧义，新词识别</p>
+<p>评价：响应度、兼容性、准确率（正确分词数目/所有分词数目*100%）、。。。。</p>
+<p><strong>索引数据结构</strong></p>
+<p>原始数据存放。。</p>
+<p>按文档分桶：</p>
+<p>按词项分桶：</p>
+<p><strong>索引建立过程</strong></p>
+<p>索引压缩：霍夫曼编码</p>
+<p><strong>索引查询过程</strong></p>
+<p>性能优化：缓存服务器、时间局部性原理，HTML关键域倒排索引</p>
+<h3 id="中文搜索引擎特殊需求？"><a href="#中文搜索引擎特殊需求？" class="headerlink" title="中文搜索引擎特殊需求？"></a>中文搜索引擎特殊需求？</h3><h3 id="五、内容检索子系统"><a href="#五、内容检索子系统" class="headerlink" title="五、内容检索子系统"></a>五、内容检索子系统</h3><p>文本信息检索，计算文档与查询的相关度，靠哪些特征进行文档排序？</p>
+<p>文档信息检索模型：布尔模型（与或非高级查询，满足和不满足，集合并非序列）、向量空间模型、概率模型</p>
+<p><strong>内容检索子系统运行方式</strong> </p>
+<p>tf-idf</p>
+<p>偏好设置、竞价排名</p>
+<h3 id="影响搜索引擎结果排序的因素有哪些？"><a href="#影响搜索引擎结果排序的因素有哪些？" class="headerlink" title="影响搜索引擎结果排序的因素有哪些？"></a>影响搜索引擎结果排序的因素有哪些？</h3><h3 id="六、链接分析子系统"><a href="#六、链接分析子系统" class="headerlink" title="六、链接分析子系统"></a>六、链接分析子系统</h3><p>主要功能：扩充文档描述内容，实现页面质量评估</p>
+<p>互联网数据特性：数量大、数据质量参差不齐、</p>
+<p><strong>万维网链接结构特性</strong> </p>
+<p>连通性、拓扑结构、入度、出度，“纺锤结构”</p>
+<p><strong>链接结构分析算法：</strong> </p>
+<p>HITS算法，针对特定主题的文档进行链接分析计算（与主题不相关文档的噪声影响，效率问题，实时进行）</p>
+<p>PageRank算法：</p>
+<p>PageRank 与 HITS 算法的主要区别：</p>
+<ul>
+<li>对网页质量的定义不同（用户浏览到网页的概率，内容权威度）</li>
+<li>施行对象不同（整个链接结构图，某个主题的搜索结构）</li>
+<li>运行效率不同（离线计算效率高，在线效率低）</li>
+</ul>
+<h3 id="七、搜索引擎性能评价"><a href="#七、搜索引擎性能评价" class="headerlink" title="七、搜索引擎性能评价"></a>七、搜索引擎性能评价</h3><p>如何全面评价搜索引擎性能？</p>
+<p>语料库：真实性、代表性、精确性</p>
+<ul>
+<li>用少量的查询样例代表大多数查询类别</li>
+</ul>
+<p>准确率：找到的是否准确 1/1 1/2 2/3 6/10</p>
+<p>召回率：找到的是否全面 除以总的相关文档 1/6 2/6 3/6</p>
+<p>平均准确率：Ap = 累加precision（i）/N 就算没有6个被找到，也会除以6</p>
+<p>前Ｎ位准确率</p>
+<p>前Ｎ位成功率</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;一、搜索引擎发展史&quot;&gt;&lt;a href=&quot;#一、搜索引擎发展史&quot; class=&quot;headerlink&quot; title=&quot;一、搜索引擎发展史&quot;&gt;&lt;/a&gt;一、搜索引擎发展史&lt;/h3&gt;&lt;p&gt;ARPAnet&lt;/p&gt;
+&lt;p&gt;Google&lt;/p&gt;
+&lt;h3 id=&quot;二、搜索引擎体系
+    
+    </summary>
+    
+      <category term="复习资料" scheme="http://yoursite.com/categories/%E5%A4%8D%E4%B9%A0%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="复习资料" scheme="http://yoursite.com/tags/%E5%A4%8D%E4%B9%A0%E8%B5%84%E6%96%99/"/>
+    
+  </entry>
   
   <entry>
     <title>MVP架构学习(三)之优化 MVP</title>
